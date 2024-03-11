@@ -1,9 +1,7 @@
 import classNames from "classnames";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { useLocalStorage } from "usehooks-ts";
-import { useServiceStore } from "../stores/servicosStore";
 import { useMemo, useState } from "react";
-import { EPrestacaoServicoStatus } from "../domain/ePrestacaoServicoStatus";
 import { STORAGE_KEY } from "../constants/key";
 
 const Sidebar = () => {
@@ -16,19 +14,6 @@ const Sidebar = () => {
     () => location.pathname.startsWith("/logged/records") || recordsClicked,
     [location.pathname, recordsClicked]
   );
-
-  const servicos = useServiceStore((state) => state.servicos);
-
-  const openedServices = useMemo(() => {
-    const abertos = [
-      EPrestacaoServicoStatus.aberto,
-      EPrestacaoServicoStatus.analise,
-      EPrestacaoServicoStatus.andamento,
-      EPrestacaoServicoStatus.aprovado,
-      EPrestacaoServicoStatus.teste,
-    ];
-    return servicos.filter((f) => abertos.includes(f.status));
-  }, [servicos]);
 
   const onLeaving = () => {
     setLocalStorage('');
