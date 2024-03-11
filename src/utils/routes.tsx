@@ -16,7 +16,6 @@ import EditProduct from "../pages/records/product/editProduct";
 import Employee from "../pages/records/employee/employee";
 import AddEmployee from "../pages/records/employee/addEmployee";
 import EditEmployee from "../pages/records/employee/editEmployee";
-import Reports from "../pages/reports/reports";
 import Print from "../pages/print";
 import Customer from "../pages/records/customer/customer";
 import AddCustomer from "../pages/records/customer/addCustomer";
@@ -109,10 +108,6 @@ export const routes =  createBrowserRouter([
                   element: <EditCustomer />,
                 },
               ],
-            },
-            {
-              path: "/logged/reports",
-              element: <Reports />,
             },
           ],
         },
