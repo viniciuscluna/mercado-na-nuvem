@@ -8,8 +8,9 @@ import { FormValues } from "../../../pages/service";
 type NewProps = {
     setFocus: UseFormSetFocus<FormValues>;
     setPort: React.Dispatch<React.SetStateAction<SerialPort | undefined>>;
+    port: SerialPort | undefined
 }
-const New = ({ setFocus, setPort }: NewProps) => {
+const New = ({ setFocus, setPort, port }: NewProps) => {
     const isOpened = useIncludeServiceStore(state => state.isNewSellOpened);
     const setIsNewSellOpened = useIncludeServiceStore(state => state.setIsNewSellOpened);
 
@@ -19,12 +20,14 @@ const New = ({ setFocus, setPort }: NewProps) => {
         }
     }, [isOpened]);
 
-    
+
 
     const handleAdd = async () => {
-        const ports = await navigator.serial.getPorts();
-        const port = ports[0];
-        setPort(port);
+        if (!port) {
+            const ports = await navigator.serial.getPorts();
+            const port = ports[0];
+            setPort(port);
+        }
         setIsNewSellOpened(false);
     }
 
