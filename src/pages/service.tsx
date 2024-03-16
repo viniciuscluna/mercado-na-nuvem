@@ -7,6 +7,7 @@ import Shortcuts from "../components/service/sell/shortcuts";
 import Total from "../components/service/sell/total";
 import useKeypress from "../hooks/useKeyPress";
 import { useIncludeServiceStore } from "../stores/includeServiceStore";
+import { useState } from "react";
 
 export type Product = {
   codigo: string;
@@ -26,8 +27,9 @@ const Service = () => {
   const setIsNewSellOpened = useIncludeServiceStore(
     (state) => state.setIsNewSellOpened
   );
+  const [port, setPort] = useState<SerialPort | undefined>(undefined);
 
-  const { register, handleSubmit, setFocus, control, getValues } = useForm<FormValues>({
+  const { handleSubmit, setFocus, control, getValues } = useForm<FormValues>({
     defaultValues: {
       products: []
     }
@@ -54,7 +56,7 @@ const Service = () => {
           Venda de Produtos
         </h2>
         <Shortcuts />
-        <Form control={control} addProduct={appendProduct} />
+        <Form control={control} addProduct={appendProduct} port={port} />
         <div className="grid grid-cols-3 gap-6 w-full">
           <div className="col-span-2">
             <List products={fields} remove={remove} />
@@ -66,7 +68,7 @@ const Service = () => {
           <button type="button" onClick={handleSubmit(onSubmit)} className="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Finalizar Venda</button>
         </div>
       </div>
-      <New setFocus={setFocus} />
+      <New setFocus={setFocus} setPort={setPort}/>
     </>
   );
 };

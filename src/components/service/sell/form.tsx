@@ -1,27 +1,89 @@
+import { useEffect } from "react";
+
 import { Control, SubmitHandler, UseFieldArrayAppend, useForm } from "react-hook-form";
 import SelectFilter from "../../selectFilter";
 import { FormValues, Product } from "../../../pages/service";
-import { useEffect } from "react";
 import { useIncludeServiceStore } from "../../../stores/includeServiceStore";
 
 type FormProps = {
     control: Control<FormValues, any>;
     addProduct: UseFieldArrayAppend<FormValues, "products">;
+    port: SerialPort | undefined;
 }
 
-const Form = ({ control, addProduct }: FormProps) => {
+const Form = ({ control, addProduct, port }: FormProps) => {
+
     const isNewSellOpened = useIncludeServiceStore(
         (state) => state.isNewSellOpened
-      );
-    const { register, handleSubmit, reset, setFocus } = useForm<Product>();
-    
+    );
+    const { register, handleSubmit, reset, setFocus, setValue } = useForm<Product>();
+
     useEffect(() => {
-        if(!isNewSellOpened){
+        if (!isNewSellOpened) {
             setFocus('codigo')
         }
     }, [isNewSellOpened]);
-    const onSubmit: SubmitHandler<Product> = (data) => { 
-        addProduct(data); 
+
+    useEffect(() => {
+        if (port) {
+            const initializeConnection = async () => {
+                //Instancias
+                const textDecoder = new TextDecoderStream();
+                const encoder = new TextEncoder();
+
+                //Solicitacao da porta
+
+                //Abertura da porta
+                await port.open({ baudRate: 4800, dataBits: 8, stopBits: 1, parity: undefined, flowControl: undefined });
+
+                //Lendo a stream
+                while (port.readable) {
+
+                    //Formatando o texto
+                    const reader = textDecoder.readable.getReader();
+
+                    try {
+                        //Enquanto estiver ativo ele busca, podemos mudar a lógica aqui para quando for o botão solicitando o peso
+                        while (true) {
+
+                            const { value, done } = await reader.read();
+                            if (done) {
+                                // |reader| has been canceled.
+                                break;
+                            }
+
+                            // Convertendo a string para ArrayBuffer
+                            const encodedValue = encoder.encode(value);
+                            // Convertendo os bytes em uma string
+                            const stringValue = new TextDecoder().decode(encodedValue);
+
+                            //Pega apenas os números com vírgula
+                            const matches = stringValue.match(/\b\d+.\d+\b/g);
+
+                            if (matches) {
+                                // Iterando sobre os valores encontrados
+                                matches.forEach(match => {
+                                    setValue('peso', Number(match));
+                                    // Faça algo com cada valor encontrado
+                                });
+                            }
+                        }
+                    } catch (error) {
+                        // Handle |error|...
+                    } finally {
+                        reader.releaseLock();
+                    }
+                }
+
+
+            }
+
+            initializeConnection();
+        }
+    }, [port]);
+
+    const onSubmit: SubmitHandler<Product> = (data) => {
+        addProduct(data);
         reset();
     }
 
