@@ -22,8 +22,8 @@ const New = ({ setFocus, setPort }: NewProps) => {
     
 
     const handleAdd = async () => {
-        const port = await navigator.serial.requestPort();
-        setPort(port);
+       
+        //setPort(port);
         setIsNewSellOpened(false);
     }
 
