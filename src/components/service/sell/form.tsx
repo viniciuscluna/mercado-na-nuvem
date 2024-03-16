@@ -24,101 +24,49 @@ const Form = ({ control, addProduct, port }: FormProps) => {
         }
     }, [isNewSellOpened]);
 
-    const pesarBalanca = async () => {
-        const ports = await navigator.serial.getPorts();
-      const port = ports[0];
-      await port.open({ baudRate: 4800, dataBits: 8, stopBits: 1, parity: 'none', flowControl: 'none' });
-      const textDecoder = new TextDecoderStream();
-      const readableStreamClosed = port.readable.pipeTo(textDecoder.writable);
-      const reader = textDecoder.readable.getReader();
+   
 
-      // Listen to data coming from the serial device.
-      while (true) {
-        const { value, done } = await reader.read();
-        if (done) {
-          // Allow the serial port to be closed later.
-          reader.releaseLock();
-          break;
+    useEffect(() => {
+        if (port) {
+            const initializeConnection = async () => {
+                
+                await port.open({ baudRate: 4800, dataBits: 8, stopBits: 1, parity: 'none', flowControl: 'none' });
+                const textDecoder = new TextDecoderStream();
+                const readableStreamClosed = port.readable.pipeTo(textDecoder.writable);
+                const reader = textDecoder.readable.getReader();
+          
+                // Listen to data coming from the serial device.
+                while (true) {
+                  const { value, done } = await reader.read();
+                  if (done) {
+                    // Allow the serial port to be closed later.
+                    reader.releaseLock();
+                    break;
+                  }
+                  const encoder = new TextEncoder();
+                  // Convertendo a string para ArrayBuffer
+                  const encodedValue = encoder.encode(value);
+                  // Convertendo os bytes em uma string
+                  const stringValue = new TextDecoder().decode(encodedValue);
+                  //Pega apenas os números com vírgula
+                  const matches = stringValue.match(/\b\d+.\d+\b/g);
+          
+                  if (matches) {
+                    // Iterando sobre os valores encontrados
+                    matches.forEach(match => {
+                      setValue('peso', Number(match));
+                      console.log(Number(match));
+                      // Faça algo com cada valor encontrado
+                    });
+                  }
+                }
+
+
+            }
+
+            initializeConnection();
         }
-        const encoder = new TextEncoder();
-        // Convertendo a string para ArrayBuffer
-        const encodedValue = encoder.encode(value);
-        // Convertendo os bytes em uma string
-        const stringValue = new TextDecoder().decode(encodedValue);
-        //Pega apenas os números com vírgula
-        const matches = stringValue.match(/\b\d+.\d+\b/g);
-
-        if (matches) {
-          // Iterando sobre os valores encontrados
-          matches.forEach(match => {
-            setValue('peso', Number(match));
-            console.log(Number(match));
-            // Faça algo com cada valor encontrado
-          });
-        }
-      }
-    }
-
-    // useEffect(() => {
-    //     if (port) {
-    //         console.log('port')
-    //         const initializeConnection = async () => {
-    //             //Instancias
-    //             const textDecoder = new TextDecoderStream();
-    //             const encoder = new TextEncoder();
-
-    //             //Solicitacao da porta
-    //             const port = await navigator.serial.requestPort();
-
-    //             //Abertura da porta
-    //             await port.open({ baudRate: 4800, dataBits: 8, stopBits: 1, parity: undefined, flowControl: undefined });
-
-    //             //Lendo a stream
-    //             while (port.readable) {
-
-    //                 //Formatando o texto
-    //                 const reader = textDecoder.readable.getReader();
-
-    //                 try {
-    //                     //Enquanto estiver ativo ele busca, podemos mudar a lógica aqui para quando for o botão solicitando o peso
-    //                     while (true) {
-
-    //                         const { value, done } = await reader.read();
-    //                         if (done) {
-    //                             // |reader| has been canceled.
-    //                             break;
-    //                         }
-
-    //                         // Convertendo a string para ArrayBuffer
-    //                         const encodedValue = encoder.encode(value);
-    //                         // Convertendo os bytes em uma string
-    //                         const stringValue = new TextDecoder().decode(encodedValue);
-
-    //                         //Pega apenas os números com vírgula
-    //                         const matches = stringValue.match(/\b\d+.\d+\b/g);
-
-    //                         if (matches) {
-    //                             // Iterando sobre os valores encontrados
-    //                             matches.forEach(match => {
-    //                                 setValue('peso', Number(match));
-    //                                 console.log('peso', Number(match))
-    //                                 // Faça algo com cada valor encontrado
-    //                             });
-    //                         }
-    //                     }
-    //                 } catch (error) {
-    //                     // Handle |error|...
-    //                 } finally {
-    //                     reader.releaseLock();
-    //                 }
-    //             }
-
-
-    //         }
-
-    //         initializeConnection();
-    //     }
-    // }, [port]);
+    }, [port]);
 
     const onSubmit: SubmitHandler<Product> = (data) => {
         addProduct(data);
@@ -159,7 +107,7 @@ const Form = ({ control, addProduct, port }: FormProps) => {
                     <input {...register('peso')} type="text" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
                 </div>
                 <div>
-                    <button type="button" onClick={() => pesarBalanca()} className="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Ler balança</button>
+                    {/* <button type="button" onClick={() => pesarBalanca()} className="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Ler balança</button> */}
                     <button type="submit" className="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Incluir Produto</button>
                 </div>
             </div>
