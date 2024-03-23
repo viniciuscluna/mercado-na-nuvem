@@ -7,7 +7,10 @@ import Shortcuts from "../components/service/sell/shortcuts";
 import Total from "../components/service/sell/total";
 import useKeypress from "../hooks/useKeyPress";
 import { useIncludeServiceStore } from "../stores/includeServiceStore";
-import { useState } from "react";
+import { useMemo, useState } from "react";
+import { useMutation } from "@tanstack/react-query";
+import { add } from "../services/ordemVendaService";
+import { Produto } from "../domain/produto";
 
 export type Product = {
   codigo: string;
@@ -23,13 +26,25 @@ export type FormValues = {
 
   products: Product[];
 }
+
+const toProduct = (product: Product): Produto => {
+  return ({
+    ...product,
+    marca: '',
+    valor_Compra: product.total,
+    valor_Venda: product.total,
+    qtd: product.quantidade,
+    prestadorId: '',
+  })
+}
 const Service = () => {
   const setIsNewSellOpened = useIncludeServiceStore(
     (state) => state.setIsNewSellOpened
   );
+
   const [port, setPort] = useState<SerialPort | undefined>(undefined);
 
-  const { handleSubmit, setFocus, control, getValues } = useForm<FormValues>({
+  const { handleSubmit, setFocus, control, getValues, watch, reset, register } = useForm<FormValues>({
     defaultValues: {
       products: []
     }
@@ -40,9 +55,22 @@ const Service = () => {
     name: "products", // unique name for your Field Array
   });
 
+  const { mutateAsync } = useMutation({
+    mutationFn: add
+  })
+
+  const products = watch('products');
+  const total = useMemo(() => products.map(p => p.total).reduce((sum, current) => sum + current, 0), [products]);
+
+ 
   const onSubmit: SubmitHandler<FormValues> = (data) => {
-    const json = JSON.stringify(data);
-    alert(`Finaliza Venda ${json}`);
+    const submit = {
+      cpf: data.cpf,
+      produtos: data.products.map(product => (toProduct(product)))
+    };
+    alert(JSON.stringify(submit));
+    mutateAsync(submit);
+    reset();
   }
 
   useKeypress('Escape', () => setIsNewSellOpened(true));
@@ -61,14 +89,14 @@ const Service = () => {
           <div className="col-span-2">
             <List products={fields} remove={remove} />
           </div>
-          <Total />
+          <Total total={total} />
         </div>
         <div className="flex gap-6 justify-between my-6">
-          <button type="button"  className="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Cancelar Venda</button>
+          <button type="button" className="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Cancelar Venda</button>
           <button type="button" onClick={handleSubmit(onSubmit)} className="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Finalizar Venda</button>
         </div>
       </div>
-      <New setFocus={setFocus} setPort={setPort} port={port}/>
+      <New setFocus={setFocus} setPort={setPort} port={port} register={register} />
     </>
   );
 };

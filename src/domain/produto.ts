@@ -12,5 +12,5 @@ export interface Produto extends Base {
     qtd: number;
     prestadorId: string;
     prestacaoServicoId?: string;
-    tipoMedidaItem: ETipoMedidaItem;
+    tipoMedidaItem?: ETipoMedidaItem;
 }

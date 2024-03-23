@@ -2,15 +2,16 @@ import classNames from "classnames";
 import { useIncludeServiceStore } from "../../../stores/includeServiceStore";
 import Form from "./form";
 import { useEffect } from "react";
-import { UseFormSetFocus } from "react-hook-form";
+import { UseFormRegister, UseFormSetFocus } from "react-hook-form";
 import { FormValues } from "../../../pages/service";
 
 type NewProps = {
     setFocus: UseFormSetFocus<FormValues>;
     setPort: React.Dispatch<React.SetStateAction<SerialPort | undefined>>;
+    register: UseFormRegister<FormValues>;
     port: SerialPort | undefined
 }
-const New = ({ setFocus, setPort, port }: NewProps) => {
+const New = ({ setFocus, setPort, port, register }: NewProps) => {
     const isOpened = useIncludeServiceStore(state => state.isNewSellOpened);
     const setIsNewSellOpened = useIncludeServiceStore(state => state.setIsNewSellOpened);
 
@@ -55,7 +56,7 @@ const New = ({ setFocus, setPort, port }: NewProps) => {
                             </button>
                         </div>
                         <div className="p-4 md:p-5 space-y-4">
-                            <Form />
+                            <Form register={register}/>
                         </div>
 
                         <div className="flex items-center p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600">

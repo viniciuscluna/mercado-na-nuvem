@@ -24,6 +24,9 @@ const List = ({ products, remove }: ListProps) => {
                             Quantidade
                         </th>
                         <th scope="col" className="px-6 py-3">
+                            Peso
+                        </th>
+                        <th scope="col" className="px-6 py-3">
                             Unitário
                         </th>
                         <th scope="col" className="px-6 py-3">
@@ -42,6 +45,9 @@ const List = ({ products, remove }: ListProps) => {
                             </td>
                             <td className="px-6 py-4">
                                 {product.quantidade}
+                            </td>
+                            <td className="px-6 py-4">
+                                {product.peso}
                             </td>
                             <td className="px-6 py-4">
                                 {currencyFormat(product.unitario)}

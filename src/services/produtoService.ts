@@ -17,6 +17,15 @@ export const getAll = async (
   ).data;
 };
 
+export const getAllNoFilter = async (
+
+): Promise<Produto[]> => {
+  return (
+    await instanceApi.get<Produto[]>("/produto", {
+    })
+  ).data;
+};
+
 export const add = async (produto: Produto): Promise<Produto> => {
   return (await instanceApi.post<Produto>("/produto", produto)).data;
 };

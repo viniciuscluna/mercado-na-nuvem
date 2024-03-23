@@ -1,9 +1,11 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 import { Control, SubmitHandler, UseFieldArrayAppend, useForm } from "react-hook-form";
 import SelectFilter from "../../selectFilter";
 import { FormValues, Product } from "../../../pages/service";
 import { useIncludeServiceStore } from "../../../stores/includeServiceStore";
+import { useQuery } from "@tanstack/react-query";
+import { getAllNoFilter } from "../../../services/produtoService";
 
 type FormProps = {
     control: Control<FormValues, any>;
@@ -11,54 +13,78 @@ type FormProps = {
     port: SerialPort | undefined;
 }
 
-const Form = ({ control, addProduct, port }: FormProps) => {
+const Form = ({ addProduct, port }: FormProps) => {
+    const [availableQuantity, setAvailableQuantity] = useState<number>(0);
+
+    const { data: produtos } = useQuery({
+        queryKey: ["sell/products"],
+        queryFn: getAllNoFilter,
+    })
 
     const isNewSellOpened = useIncludeServiceStore(
         (state) => state.isNewSellOpened
     );
-    const { register, handleSubmit, reset, setFocus, setValue } = useForm<Product>();
+    const { register, handleSubmit, reset, setFocus, setValue, watch, control } = useForm<Product>();
 
     useEffect(() => {
         if (!isNewSellOpened) {
-            setFocus('codigo')
+            setFocus('produto')
         }
     }, [isNewSellOpened]);
 
-   
+    // Callback version of watch.  It's your responsibility to unsubscribe when done.
+    useEffect(() => {
+        const subscription = watch((value, { name, type }) => {
+            if (name === "produto") {
+                console.log('dfds ', value, name, type)
+                console.log('produtos', produtos)
+                const produtoFilter = produtos?.find(f => f.id == value.produto);
+                console.log(produtoFilter)
+                setValue("nome", produtoFilter?.nome || '');
+                setValue("unitario", produtoFilter?.valor_Venda || 0);
+                setValue("quantidade", 1);
+                setValue("total", produtoFilter?.valor_Venda || 0);
+                setAvailableQuantity(produtoFilter?.qtd || 1);
+            }
+        });
+        return () => subscription.unsubscribe()
+    }, [watch, produtos])
+
+
 
     useEffect(() => {
         if (port) {
             const initializeConnection = async () => {
-                
+
                 await port.open({ baudRate: 4800, dataBits: 8, stopBits: 1, parity: 'none', flowControl: 'none' });
                 const textDecoder = new TextDecoderStream();
-                const readableStreamClosed = port.readable.pipeTo(textDecoder.writable);
+                port.readable.pipeTo(textDecoder.writable);
                 const reader = textDecoder.readable.getReader();
-          
+
                 // Listen to data coming from the serial device.
                 while (true) {
-                  const { value, done } = await reader.read();
-                  if (done) {
-                    // Allow the serial port to be closed later.
-                    reader.releaseLock();
-                    break;
-                  }
-                  const encoder = new TextEncoder();
-                  // Convertendo a string para ArrayBuffer
-                  const encodedValue = encoder.encode(value);
-                  // Convertendo os bytes em uma string
-                  const stringValue = new TextDecoder().decode(encodedValue);
-                  //Pega apenas os números com vírgula
-                  const matches = stringValue.match(/\b\d+.\d+\b/g);
-          
-                  if (matches) {
-                    // Iterando sobre os valores encontrados
-                    matches.forEach(match => {
-                      setValue('peso', Number(match));
-                      console.log(Number(match));
-                      // Faça algo com cada valor encontrado
-                    });
-                  }
+                    const { value, done } = await reader.read();
+                    if (done) {
+                        // Allow the serial port to be closed later.
+                        reader.releaseLock();
+                        break;
+                    }
+                    const encoder = new TextEncoder();
+                    // Convertendo a string para ArrayBuffer
+                    const encodedValue = encoder.encode(value);
+                    // Convertendo os bytes em uma string
+                    const stringValue = new TextDecoder().decode(encodedValue);
+                    //Pega apenas os números com vírgula
+                    const matches = stringValue.match(/\b\d+.\d+\b/g);
+
+                    if (matches) {
+                        // Iterando sobre os valores encontrados
+                        matches.forEach(match => {
+                            setValue('peso', Number(match));
+                            console.log(Number(match));
+                            // Faça algo com cada valor encontrado
+                        });
+                    }
                 }
 
 
@@ -73,25 +99,28 @@ const Form = ({ control, addProduct, port }: FormProps) => {
         reset();
     }
 
+    if (!produtos) return <></>
+
     return (
         <form className="w-full" onSubmit={handleSubmit(onSubmit)}>
             <div className="grid gap-6 mb-6 md:grid-cols-4 w-full">
                 <div>
+                    <label htmlFor="produto" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Pesquisar Produto</label>
+                    <SelectFilter name="produto" values={produtos.map(item => ({ name: `${item.marca} - ${item.nome}` || '', value: item.id || '' }))} searchPlaceholder="Selecione o Produto" emptyPlaceholder="Selecione" search="" control={control} />
+                </div>
+                <div>
                     <label htmlFor="codigo" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Código</label>
-                    <input {...register("codigo")} autoFocus type="text" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
+                    <input readOnly {...register("codigo")} autoFocus type="text" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
                 </div>
                 <div>
                     <label htmlFor="nome" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nome</label>
-                    <input {...register('nome')} type="text" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
+                    <input readOnly {...register('nome')} type="text" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
                 </div>
                 <div>
                     <label htmlFor="quantidade" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Quantidade</label>
-                    <input {...register('quantidade')} type="text" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
+                    <input {...register('quantidade')} type="number" min={availableQuantity === 0 ? 0 : 1} max={availableQuantity} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
                 </div>
-                <div>
-                    <label htmlFor="produto" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Pesquisar Produto</label>
-                    <SelectFilter name="produto" values={[]} searchPlaceholder="Selecione o Produto" emptyPlaceholder="Selecione" search="" control={control} />
-                </div>
+
             </div>
             <div className="grid gap-6 mb-6 md:grid-cols-4 w-full">
                 <div>
@@ -100,14 +129,14 @@ const Form = ({ control, addProduct, port }: FormProps) => {
                 </div>
                 <div>
                     <label htmlFor="total" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Total</label>
-                    <input {...register('total')} type="text" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
+                    <input {...register('total')} readOnly type="text" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
                 </div>
                 <div>
                     <label htmlFor="peso" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Peso</label>
                     <input {...register('peso')} type="text" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
                 </div>
                 <div>
-                    {/* <button type="button" onClick={() => pesarBalanca()} className="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Ler balança</button> */}
+                    <br/>
                     <button type="submit" className="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Incluir Produto</button>
                 </div>
             </div>
