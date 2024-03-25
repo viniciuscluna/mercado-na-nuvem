@@ -36,15 +36,14 @@ const Form = ({ addProduct, port }: FormProps) => {
     useEffect(() => {
         const subscription = watch((value, { name, type }) => {
             if (name === "produto") {
-                console.log('dfds ', value, name, type)
-                console.log('produtos', produtos)
                 const produtoFilter = produtos?.find(f => f.id == value.produto);
-                console.log(produtoFilter)
                 setValue("nome", produtoFilter?.nome || '');
                 setValue("unitario", produtoFilter?.valor_Venda || 0);
                 setValue("quantidade", 1);
                 setValue("total", produtoFilter?.valor_Venda || 0);
+                setValue('peso', 0)
                 setAvailableQuantity(produtoFilter?.qtd || 1);
+
             }
         });
         return () => subscription.unsubscribe()
