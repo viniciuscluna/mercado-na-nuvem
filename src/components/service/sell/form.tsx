@@ -34,7 +34,7 @@ const Form = ({ addProduct, port }: FormProps) => {
 
     // Callback version of watch.  It's your responsibility to unsubscribe when done.
     useEffect(() => {
-        const subscription = watch((value, { name, type }) => {
+        const subscription = watch((value, { name }) => {
             if (name === "produto") {
                 const produtoFilter = produtos?.find(f => f.id == value.produto);
                 setValue("nome", produtoFilter?.nome || '');
@@ -98,15 +98,15 @@ const Form = ({ addProduct, port }: FormProps) => {
         reset();
     }
 
-    if (!produtos) return <></>
-
     return (
         <form className="w-full" onSubmit={handleSubmit(onSubmit)}>
             <div className="grid gap-6 mb-6 md:grid-cols-4 w-full">
-                <div>
-                    <label htmlFor="produto" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Pesquisar Produto</label>
-                    <SelectFilter name="produto" values={produtos.map(item => ({ name: `${item.marca} - ${item.nome}` || '', value: item.id || '' }))} searchPlaceholder="Selecione o Produto" emptyPlaceholder="Selecione" search="" control={control} />
-                </div>
+                {produtos &&
+                    <div>
+                        <label htmlFor="produto" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Pesquisar Produto</label>
+                        <SelectFilter name="produto" values={produtos.map(item => ({ name: `${item.marca} - ${item.nome}` || '', value: item.id || '' }))} searchPlaceholder="Selecione o Produto" emptyPlaceholder="Selecione" search="" control={control} />
+                    </div>
+                }
                 <div>
                     <label htmlFor="codigo" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Código</label>
                     <input readOnly {...register("codigo")} autoFocus type="text" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
@@ -135,7 +135,7 @@ const Form = ({ addProduct, port }: FormProps) => {
                     <input {...register('peso')} type="text" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
                 </div>
                 <div>
-                    <br/>
+                    <br />
                     <button type="submit" className="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Incluir Produto</button>
                 </div>
             </div>
