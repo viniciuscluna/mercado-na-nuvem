@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 import { Control, SubmitHandler, UseFieldArrayAppend, useForm } from "react-hook-form";
 import SelectFilter from "../../selectFilter";
@@ -15,11 +15,14 @@ type FormProps = {
 
 const Form = ({ addProduct, port }: FormProps) => {
     const [availableQuantity, setAvailableQuantity] = useState<number>(0);
+    
 
     const { data: produtos } = useQuery({
         queryKey: ["sell/products"],
         queryFn: getAllNoFilter,
     })
+
+    const noProducts = useMemo(() => produtos?.length === 0,[produtos]);
 
     const isNewSellOpened = useIncludeServiceStore(
         (state) => state.isNewSellOpened
@@ -31,6 +34,12 @@ const Form = ({ addProduct, port }: FormProps) => {
             setFocus('produto')
         }
     }, [isNewSellOpened]);
+
+    useEffect(() => {
+        if(noProducts){
+            setAvailableQuantity(500);
+        }
+    }, [noProducts])
 
     // Callback version of watch.  It's your responsibility to unsubscribe when done.
     useEffect(() => {
@@ -109,11 +118,11 @@ const Form = ({ addProduct, port }: FormProps) => {
                 }
                 <div>
                     <label htmlFor="codigo" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Código</label>
-                    <input readOnly {...register("codigo")} autoFocus type="text" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
+                    <input readOnly={!noProducts} {...register("codigo")} autoFocus type="text" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
                 </div>
                 <div>
                     <label htmlFor="nome" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nome</label>
-                    <input readOnly {...register('nome')} type="text" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
+                    <input readOnly={!noProducts} {...register('nome')} type="text" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
                 </div>
                 <div>
                     <label htmlFor="quantidade" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Quantidade</label>
