@@ -7,10 +7,11 @@ import Shortcuts from "../components/service/sell/shortcuts";
 import Total from "../components/service/sell/total";
 import useKeypress from "../hooks/useKeyPress";
 import { useIncludeServiceStore } from "../stores/includeServiceStore";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useMutation } from "@tanstack/react-query";
 import { add } from "../services/ordemVendaService";
 import { Produto } from "../domain/produto";
+import { useNotificationStore } from "../stores/notificationStore";
 
 export type Product = {
   codigo: string;
@@ -40,10 +41,13 @@ const Service = () => {
   const setIsNewSellOpened = useIncludeServiceStore(
     (state) => state.setIsNewSellOpened
   );
+  const addNotification = useNotificationStore(
+    (state) => state.addNotification
+  );
 
   const [port, setPort] = useState<SerialPort | undefined>(undefined);
 
-  const { handleSubmit, setFocus, control, getValues, watch, reset, register } = useForm<FormValues>({
+  const { setFocus, control, getValues, watch, reset, register } = useForm<FormValues>({
     defaultValues: {
       products: []
     }
@@ -54,20 +58,29 @@ const Service = () => {
     name: "products", // unique name for your Field Array
   });
 
-  const { mutateAsync } = useMutation({
+  const { mutateAsync, isSuccess } = useMutation({
     mutationFn: add
   })
 
   const products = watch('products');
   const total = useMemo(() => products.map(p => p.total).reduce((sum, current) => sum + current, 0), [products]);
 
- 
+
+  useEffect(() => {
+    if (isSuccess) {
+      addNotification({
+        type: 'success',
+        message: 'Venda Realizada'
+      });
+      reset();
+    }
+  }, [isSuccess])
+
   const onSubmit: SubmitHandler<FormValues> = (data) => {
     const submit = {
       cpf: data.cpf,
       produtos: data.products.map(product => (toProduct(product)))
     };
-    alert(JSON.stringify(submit));
     mutateAsync(submit);
     reset();
   }
