@@ -12,6 +12,7 @@ import { useMutation } from "@tanstack/react-query";
 import { add } from "../services/ordemVendaService";
 import { Produto } from "../domain/produto";
 import { useNotificationStore } from "../stores/notificationStore";
+import Add from "../components/service/product/add";
 
 export type Product = {
   codigo: string;
@@ -74,7 +75,7 @@ const Service = () => {
       });
       reset();
     }
-  }, [isSuccess])
+  }, [isSuccess]);
 
   const onSubmit: SubmitHandler<FormValues> = (data) => {
     const submit = {
@@ -109,6 +110,7 @@ const Service = () => {
         </div>
       </div>
       <New setFocus={setFocus} setPort={setPort} port={port} register={register} />
+      <Add />
     </>
   );
 };

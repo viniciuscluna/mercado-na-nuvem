@@ -107,7 +107,7 @@ const SelectFilter = ({
       <input type="hidden" ref={ref} />
       <div
         className={classNames(
-          "z-10 bg-white rounded-lg shadow w-full dark:bg-gray-700 mt-1 absolute w-fit",
+          "z-10 bg-white rounded-lg shadow dark:bg-gray-700 mt-1 absolute w-fit",
           !isExpanded ? "hidden" : ""
         )}
       >
