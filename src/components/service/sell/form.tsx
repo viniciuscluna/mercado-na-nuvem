@@ -15,19 +15,19 @@ type FormProps = {
 
 const Form = ({ addProduct, port }: FormProps) => {
     const [availableQuantity, setAvailableQuantity] = useState<number>(0);
-    
+
 
     const { data: produtos } = useQuery({
         queryKey: ["sell/products"],
         queryFn: getAllNoFilter,
     })
 
-    const noProducts = useMemo(() => produtos?.length === 0,[produtos]);
+    const noProducts = useMemo(() => produtos?.length === 0, [produtos]);
 
     const isNewSellOpened = useIncludeServiceStore(
         (state) => state.isNewSellOpened
     );
-    const { register, handleSubmit, reset, setFocus, setValue, watch, control } = useForm<Product>();
+    const { register, handleSubmit, reset, setFocus, setValue, watch, getValues, control } = useForm<Product>();
 
     useEffect(() => {
         if (!isNewSellOpened) {
@@ -36,7 +36,7 @@ const Form = ({ addProduct, port }: FormProps) => {
     }, [isNewSellOpened]);
 
     useEffect(() => {
-        if(noProducts){
+        if (noProducts) {
             setAvailableQuantity(500);
         }
     }, [noProducts])
@@ -53,6 +53,14 @@ const Form = ({ addProduct, port }: FormProps) => {
                 setValue('peso', 0)
                 setAvailableQuantity(produtoFilter?.qtd || 1);
 
+            }
+            if (name === "unitario") {
+                const unitario = getValues("unitario")
+                const quantidade = getValues("quantidade");
+
+
+                if (unitario && quantidade)
+                    setValue("total", unitario * quantidade)
             }
         });
         return () => subscription.unsubscribe()
