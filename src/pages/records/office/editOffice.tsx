@@ -4,69 +4,67 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import { useNavigate, useParams } from "react-router-dom";
 
 import Loader from "../../../components/loader";
-import { getInfoProduto, edit } from "../../../services/produtoService";
-import { Produto } from "../../../domain/produto";
-import ProductForm from "../../../components/records/productForm";
+import { getId, edit } from "../../../services/filialService";
+import { FilialServico} from "../../../domain/filialServico";
+import OfficeForm from "../../../components/records/officeForm";
 import { PathCrudProps } from "../../../types/pathCrudProps";
 import { useNotificationStore } from "../../../stores/notificationStore";
 
-const EditProduct = () => {
+const EditOffice = () => {
   const params = useParams<PathCrudProps>();
-  const backPage = "/logged/records/product";
+  const backPage = "/logged/records/office";
   const navigate = useNavigate();
   const addNotification = useNotificationStore(
     (state) => state.addNotification
   );
 
-  const editProdutoResult = useMutation({
+  const editFilialResult = useMutation({
     mutationFn: edit,
     onSuccess: () => {
       navigate(backPage);
       addNotification({
-        message: "Produto atualizado!",
+        message: "Filial atualizada!",
         type: "success",
       });
     },
     onError: () => {
       addNotification({
-        message: "Erro ao atualizar produto.",
+        message: "Erro ao atualizar Filial.",
         type: "error"
       })
     }
   });
 
-  const produtoResult = useQuery({
-    queryKey: ["produto", params.id],
-    queryFn: () => getInfoProduto(params.nome ? params.nome : "", params.marca ? params.marca : "", params.modelo ? params.modelo : ""),
+  const filialResult = useQuery({
+    queryKey: ["filial", params.id],
+    queryFn: () => getId(params.id || ""),
   });
 
-  const onSubmit = (produto: Produto) => {
-    editProdutoResult.mutateAsync(produto);
+  const onSubmit = (filial: FilialServico) => {
+    editFilialResult.mutateAsync(filial);
   };
 
   const isPending = useMemo(
-    () => produtoResult.isPending || editProdutoResult.isPending,
-    [editProdutoResult.isPending, produtoResult.isPending]
+    () => editFilialResult.isPending || filialResult.isPending,
+    [editFilialResult.isPending, filialResult.isPending]
   );
-
   return (
     <div>
       <h3 className="text-2xl font-extrabold dark:text-white my-6">
-        Incluir Produto
+        Editar Filial
       </h3>
-      {isPending && !produtoResult.data? (
+      {isPending ? (
         <Loader />
       ) : (
-        <ProductForm
+        <OfficeForm
           backCallback={() => navigate(backPage)}
           submitCallback={onSubmit}
-          defaultValues={produtoResult.data as Produto}
+          defaultValues={filialResult.data}
           label="Editar"
-          editMode={true}
         />
       )}
     </div>
   );
 };
 
-export default EditProduct;
+export default EditOffice;

@@ -21,6 +21,9 @@ import Customer from "../pages/records/customer/customer";
 import AddCustomer from "../pages/records/customer/addCustomer";
 import EditCustomer from "../pages/records/customer/editCustomer";
 import Dashboard from "../pages/dashboard";
+import Office from "../pages/records/office/office";
+import AddOffice from "../pages/records/office/addOffice";
+import EditOffice from "../pages/records/office/editOffice";
 
 export const routes =  createBrowserRouter([
     {
@@ -82,6 +85,10 @@ export const routes =  createBrowserRouter([
                 {
                   path: "/logged/records/product/edit/:id",
                   element: <EditProduct />,
+                },               
+                {
+                  path: "/logged/records/product/ProdutoInfo/:nome/:marca/:modelo",
+                  element: <EditProduct />,
                 },
                 {
                   path: "/logged/records/employee",
@@ -106,6 +113,18 @@ export const routes =  createBrowserRouter([
                 {
                   path: "/logged/records/customer/edit/:id",
                   element: <EditCustomer />,
+                },
+                {
+                  path: "/logged/records/office",
+                  element: <Office />,
+                },
+                {
+                  path: "/logged/records/office/add",
+                  element: <AddOffice />,
+                },
+                {
+                  path: "/logged/records/office/edit/:id",
+                  element: <EditOffice />,
                 },
               ],
             },

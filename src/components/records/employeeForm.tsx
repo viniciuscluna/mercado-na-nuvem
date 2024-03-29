@@ -2,6 +2,8 @@ import { useForm } from "react-hook-form";
 import { useHookFormMask } from "use-mask-input";
 
 import { FuncionarioPrestador } from "../../domain/funcionarioPrestador";
+import { getAll } from "../../services/filialService";
+import { useQuery } from "@tanstack/react-query";
 
 type EmployeeFormProps = {
   submitCallback: (funcionario: FuncionarioPrestador) => void;
@@ -19,8 +21,14 @@ const EmployeeForm = ({
   const { register, handleSubmit } = useForm<FuncionarioPrestador>({
     defaultValues: defaultValues,
   });
-  const registerWithMask = useHookFormMask(register);
 
+  const { data } = useQuery({
+    queryKey: ["employee"],
+    queryFn: () =>  getAll("", ""),
+  });
+
+  const registerWithMask = useHookFormMask(register);
+  
   return (
     <form onSubmit={handleSubmit(submitCallback)}>
       <div className="mb-6">
@@ -28,7 +36,7 @@ const EmployeeForm = ({
           htmlFor="nome"
           className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
         >
-          Nome
+          Nome*
         </label>
         <input
           {...register("nome", { required: true })}
@@ -43,7 +51,7 @@ const EmployeeForm = ({
           htmlFor="telefone"
           className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
         >
-          Telefone
+          Telefone*
         </label>
         <input
           {...registerWithMask("telefone", ["(99) [9]9999-9999"], {
@@ -59,7 +67,7 @@ const EmployeeForm = ({
           htmlFor="email"
           className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
         >
-          Email
+          Email*
         </label>
         <input
           {...registerWithMask("email", "email", { required: true })}
@@ -74,7 +82,7 @@ const EmployeeForm = ({
           htmlFor="rg"
           className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
         >
-          RG
+          RG*
         </label>
         <input
           {...registerWithMask("rg", ["99999999-9"], { required: true })}
@@ -88,7 +96,7 @@ const EmployeeForm = ({
           htmlFor="cpf"
           className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
         >
-          CPF
+          CPF*
         </label>
         <input
           {...registerWithMask("cpf", "cpf", {
@@ -105,7 +113,7 @@ const EmployeeForm = ({
           htmlFor="endereco"
           className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
         >
-          Endereço
+          Endereço*
         </label>
         <input
           {...register("endereco", { required: true })}
@@ -120,7 +128,7 @@ const EmployeeForm = ({
           htmlFor="cargo"
           className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
         >
-          Cargo
+          Cargo*
         </label>
         <input
           {...register("cargo", { required: true })}
@@ -129,6 +137,22 @@ const EmployeeForm = ({
           maxLength={100}
           className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
         />
+      </div>
+      <div className="mb-6">
+        <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+          Filial*
+        </label>
+        <select
+          className="block w-full p-2 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          {...register("filialId")}
+        >          
+          {
+          Array.isArray(data) && data?.map((filial) => (
+            <option key={filial.id} value={filial.id}>
+              {filial.nome}
+            </option>
+          ))}
+        </select>
       </div>
       <div className="flex gap-4">
         <button

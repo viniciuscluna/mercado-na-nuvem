@@ -1,13 +1,14 @@
 import { NavLink, useNavigate } from "react-router-dom";
 import { useMutation } from "@tanstack/react-query";
 
-import { getAll, desabled } from "../../../services/produtoService";
+import { getAllGroupByProduct, desabled } from "../../../services/produtoService";
 import Loader from "../../../components/loader";
 import Filter from "../../../components/filter";
 import { useForm } from "react-hook-form";
 import { useEffect, useState } from "react";
 import { useNotificationStore } from "../../../stores/notificationStore";
 import ConfirmModal from "../../../components/confirmModal";
+import { currencyFormat } from "../../../utils/currencyFormater";
 
 type ProductFields = {
   nome: string;
@@ -22,11 +23,12 @@ const Product = () => {
   );
   const { data, isPending: isPending, mutateAsync } = useMutation({
     mutationFn: (fields: ProductFields) =>
-      getAll(fields.nome, fields.marca, fields.modelo),
+    getAllGroupByProduct(fields.nome, fields.marca, fields.modelo),
   });
 
   const { register, handleSubmit, getValues } = useForm<ProductFields>();
 
+  const formatMoeda = currencyFormat;
 
   const { mutateAsync: mutateDisableAsync } = useMutation({
     mutationFn: (id: string) =>
@@ -77,6 +79,7 @@ const Product = () => {
                   id="nome"
                   {...register("nome")}
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  placeholder="Entre com o nome aqui"
                 />
               </div>
               <div className="mb-6">
@@ -91,6 +94,7 @@ const Product = () => {
                   id="marca"
                   {...register("marca")}
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  placeholder="Entre com a marca aqui"
                 />
               </div>
               <div className="mb-6">
@@ -105,6 +109,7 @@ const Product = () => {
                   id="modelo"
                   {...register("modelo")}
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  placeholder="Entre com o modelo aqui"
                 />
               </div>
               <button
@@ -167,12 +172,12 @@ const Product = () => {
                   </th>
                   <td className="px-6 py-4">{produto.marca}</td>
                   <td className="px-6 py-4">{produto.modelo}</td>
-                  <td className="px-6 py-4">{produto.valor_Venda}</td>
-                  <td className="px-6 py-4">{produto.valor_Compra}</td>
+                  <td className="px-6 py-4">{formatMoeda(produto.valor_Venda)}</td>
+                  <td className="px-6 py-4">{formatMoeda(produto.valor_Compra)}</td>
                   <td className="px-6 py-4">{produto.qtd}</td>
                   <td className="px-6 py-4">
                     <div className="flex gap-1">
-                      <NavLink title="Editar" to={`edit/${produto.id}`}>
+                      <NavLink title="Editar" to={`ProdutoInfo/${produto.nome}/${produto.marca}/${produto.modelo == "" ? "empty":produto.modelo}`}>
                         <svg
                           className="w-4 h-4 text-green-800 dark:text-green-400"
                           aria-hidden="true"

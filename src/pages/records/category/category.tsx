@@ -62,7 +62,7 @@ const Category = () => {
       <div className="flex flex-col mt-8">
         <div className="flex flex-col  gap-5">
           <Filter defaultValue={false}>
-            <form onSubmit={handleSubmit(onSubmit)}>
+          <form onSubmit={handleSubmit(onSubmit)}>
               <div className="mt-4">
                 {/* Aqui você pode adicionar os campos de filtro */}
                 <div className="mb-6">
@@ -77,6 +77,7 @@ const Category = () => {
                     id="titulo"
                     {...register("titulo")}
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    placeholder="Entre com o título aqui"
                   />
                 </div>
                 <div className="mb-6">
@@ -91,6 +92,7 @@ const Category = () => {
                     id="descricao"
                     {...register("descricao")}
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    placeholder="Entre com o descrição aqui"
                   />
                 </div>
                 <button
@@ -112,7 +114,7 @@ const Category = () => {
             </button>
           </div>
           <div className="relative overflow-x-auto">
-            <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+          <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
               <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
                   <th scope="col" className="px-6 py-3">

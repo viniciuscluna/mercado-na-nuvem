@@ -5,7 +5,7 @@ import SelectFilter from "../../selectFilter";
 import { FormValues, Product } from "../../../pages/service";
 import { useIncludeServiceStore } from "../../../stores/includeServiceStore";
 import { useQuery } from "@tanstack/react-query";
-import { getAllNoFilter } from "../../../services/produtoService";
+import { getAllGroupByProduct } from "../../../services/produtoService";
 
 type FormProps = {
     control: Control<FormValues, any>;
@@ -19,7 +19,7 @@ const Form = ({ addProduct, port }: FormProps) => {
 
     const { data: produtos } = useQuery({
         queryKey: ["sell/products"],
-        queryFn: getAllNoFilter,
+        queryFn: () => getAllGroupByProduct("", "", ""),
     })
 
     const noProducts = useMemo(() => produtos?.length === 0, [produtos]);
@@ -45,14 +45,15 @@ const Form = ({ addProduct, port }: FormProps) => {
     useEffect(() => {
         const subscription = watch((value, { name }) => {
             if (name === "produto") {
-                const produtoFilter = produtos?.find(f => f.id == value.produto);
-                setValue("nome", produtoFilter?.nome || '');
-                setValue("unitario", produtoFilter?.valor_Venda || 0);
-                setValue("quantidade", 1);
-                setValue("total", produtoFilter?.valor_Venda || 0);
-                setValue('peso', 0)
-                setAvailableQuantity(produtoFilter?.qtd || 1);
-
+                if (Array.isArray(produtos)) {
+                    const produtoFilter = produtos?.find(f => f.id == value.produto);
+                    setValue("nome", produtoFilter?.nome || '');
+                    setValue("unitario", produtoFilter?.valor_Venda || 0);
+                    setValue("quantidade", 1);
+                    setValue("total", produtoFilter?.valor_Venda || 0);
+                    setValue('peso', 0)
+                    setAvailableQuantity(produtoFilter?.qtd || 1);
+                }
             }
             if (name === "unitario") {
                 const unitario = getValues("unitario")
@@ -118,7 +119,7 @@ const Form = ({ addProduct, port }: FormProps) => {
     return (
         <form className="w-full" onSubmit={handleSubmit(onSubmit)}>
             <div className="grid gap-6 mb-6 md:grid-cols-4 w-full">
-                {produtos &&
+                {Array.isArray(produtos) && produtos &&
                     <div>
                         <label htmlFor="produto" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Pesquisar Produto</label>
                         <SelectFilter name="produto" values={produtos.map(item => ({ name: `${item.marca} - ${item.nome}` || '', value: item.id || '' }))} searchPlaceholder="Selecione o Produto" emptyPlaceholder="Selecione" search="" control={control} />

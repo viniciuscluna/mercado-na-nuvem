@@ -7,6 +7,9 @@ import { useForm } from "react-hook-form";
 import Filter from "../../../components/filter";
 import { useNotificationStore } from "../../../stores/notificationStore";
 import ConfirmModal from "../../../components/confirmModal";
+import { phoneFormater } from "../../../utils/phoneFormater";
+import { cpfFormater } from "../../../utils/cpfFormater";
+import { useHookFormMask } from "use-mask-input";
 
 type EmployeFields = {
   nome: string;
@@ -16,17 +19,24 @@ type EmployeFields = {
 
 const Employee = () => {
   const [isDisableSelect, setDisableSelect] = useState<string | undefined>(undefined);
+  
   const navigate = useNavigate();
+
   const addNotification = useNotificationStore(
     (state) => state.addNotification
   );
+  
   const { data, isPending, mutateAsync } = useMutation({
     mutationFn: (fields: EmployeFields) =>
       getAll(fields.nome, fields.cpf, fields.email),
   });
 
   const { register, handleSubmit, getValues } = useForm<EmployeFields>();
-
+ 
+  const registerWithMask = useHookFormMask(register);
+  const formatTel = phoneFormater;
+  const formatCpf = cpfFormater;
+  
   const { mutateAsync: mutateDisableAsync } = useMutation({
     mutationFn: (id: string) =>
       desabled(id),
@@ -65,7 +75,7 @@ const Employee = () => {
 
           <Filter defaultValue={false}>
             <form onSubmit={handleSubmit(onSubmit)}>
-              <div className="mt-4">
+            <div className="mt-4">
                 {/* Aqui você pode adicionar os campos de filtro */}
                 <div className="mb-6">
                   <label
@@ -79,6 +89,7 @@ const Employee = () => {
                     id="nome"
                     {...register("nome")}
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    placeholder="Entre com o nome aqui"
                   />
                 </div>
                 <div className="mb-6">
@@ -91,8 +102,9 @@ const Employee = () => {
                   <input
                     type="text"
                     id="cpf"
-                    {...register("cpf")}
+                    {...registerWithMask("cpf", "cpf")}
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    placeholder="Entre com o Cpf aqui"
                   />
                 </div>
                 <div className="mb-6">
@@ -105,8 +117,9 @@ const Employee = () => {
                   <input
                     type="text"
                     id="email"
-                    {...register("email")}
+                    {...registerWithMask("email", "email")}
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    placeholder="Entre com o e-mail aqui"
                   />
                 </div>
                 <button
@@ -164,8 +177,8 @@ const Employee = () => {
                       {funcionario.nome}
                     </th>
                     <td className="px-6 py-4">{funcionario.email}</td>
-                    <td className="px-6 py-4">{funcionario.cpf}</td>
-                    <td className="px-6 py-4">{funcionario.telefone}</td>
+                    <td className="px-6 py-4">{formatCpf(funcionario.cpf)}</td>
+                    <td className="px-6 py-4">{formatTel(funcionario.telefone)}</td>
                     <td className="px-6 py-4">{funcionario.cargo}</td>
                     <td className="px-6 py-4">
                       <div className="flex gap-1">

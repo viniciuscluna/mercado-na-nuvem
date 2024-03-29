@@ -26,6 +26,32 @@ export const getAllNoFilter = async (
   ).data;
 };
 
+export const getAllGroupByProduct = async (
+  nome: string,
+  marca: string,
+  modelo: string
+): Promise<Produto[] | string> => {
+  return (
+    await instanceApi.get<Produto[] | string>("/produto/ProdutosEstoque", {
+      params: {
+        nome,
+        marca,
+        modelo,
+      },
+    })
+  ).data;
+};
+
+export const getInfoProduto = async (
+  nome: string,
+  marca: string,
+  modelo: string
+): Promise<Produto | string> => {
+  return (
+    await instanceApi.get<Produto | string>(`/produto/ProdutoInfo/${nome}/${marca}/${modelo}/`)
+  ).data;
+};
+
 export const add = async (produto: Produto): Promise<Produto> => {
   return (await instanceApi.post<Produto>("/produto", produto)).data;
 };
