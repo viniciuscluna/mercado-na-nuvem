@@ -7,7 +7,7 @@ import {
   Legend,
 } from "recharts";
 import { CustomLabelPieProps } from "./chartProps";
-import { getSubCategory } from "../../services/dashboardService";
+import { getProductBrand } from "../../services/dashboardService";
 import { useQuery } from "@tanstack/react-query";
 import { useMemo } from "react";
 import LoadingIndicator from "../loadingIndicator";
@@ -45,7 +45,7 @@ const SubCategoryChartPie = () => {
 
   const { isPending, data: responseData } = useQuery({
     queryKey: ["dash/subCategory"],
-    queryFn: getSubCategory,
+    queryFn: getProductBrand,
   });
 
   const data = useMemo(
@@ -63,7 +63,7 @@ const SubCategoryChartPie = () => {
   return (
     <div className="p-2 w-full">
       <h5 className="text-center text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-        SubCategoria Agrupada
+        Marcas Agrupadas
       </h5>
       <br/>
       <div

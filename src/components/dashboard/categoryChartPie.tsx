@@ -8,7 +8,7 @@ import {
 } from "recharts";
 import { CustomLabelPieProps } from "./chartProps";
 import { useQuery } from "@tanstack/react-query";
-import { getCategory } from "../../services/dashboardService";
+import { getProductGroupBy } from "../../services/dashboardService";
 import { useMemo } from "react";
 import LoadingIndicator from "../loadingIndicator";
 
@@ -50,7 +50,7 @@ const CategoryChartPie = () => {
 
   const { isPending, data: responseData } = useQuery({
     queryKey: ["dash/category"],
-    queryFn: getCategory,
+    queryFn: getProductGroupBy,
   });
 
   const data = useMemo(
@@ -68,7 +68,7 @@ const CategoryChartPie = () => {
   return (
     <div className="p-2 w-full">
       <h5 className="text-center text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-        Categoria Agrupada
+        Produtos Agrupados
       </h5>
       <br />
       <div

@@ -34,10 +34,27 @@ export const getCategory = async (): Promise<PieResponse[]> => {
   ).data;
 };
 
+
+export const getProductGroupBy = async (): Promise<PieResponse[]> => {
+  return (
+    await instanceApi.get<PieResponse[]>(
+      "/dashboard/DashboardProdutoNomeAgrupado"
+    )
+  ).data;
+};
+
 export const getSubCategory = async (): Promise<PieResponse[]> => {
   return (
     await instanceApi.get<PieResponse[]>(
       "/dashboard/dashboardsubcategoriaagrupado"
+    )
+  ).data;
+};
+
+export const getProductBrand = async (): Promise<PieResponse[]> => {
+  return (
+    await instanceApi.get<PieResponse[]>(
+      "/dashboard/DashboardProdutoMarcaAgrupado"
     )
   ).data;
 };
