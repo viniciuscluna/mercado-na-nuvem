@@ -8,7 +8,7 @@ export const dateTimeFormarter = (date: string) => {
     const year = parsedDate.getFullYear();
   
     // Formata a data como "dd-mm-aaaa"
-    const formattedDate = `${day}-${month}-${year}`;
+    const formattedDate = `${day}/${month}/${year}`;
   
     return formattedDate;
   };
