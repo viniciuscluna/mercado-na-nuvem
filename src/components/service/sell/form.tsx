@@ -6,6 +6,7 @@ import { FormValues, Product } from "../../../pages/service";
 import { useIncludeServiceStore } from "../../../stores/includeServiceStore";
 import { useQuery } from "@tanstack/react-query";
 import { getAllGroupByProduct } from "../../../services/produtoService";
+import { useHookFormMask } from "use-mask-input";
 
 type FormProps = {
     control: Control<FormValues, any>;
@@ -27,7 +28,9 @@ const Form = ({ addProduct, port }: FormProps) => {
     const isNewSellOpened = useIncludeServiceStore(
         (state) => state.isNewSellOpened
     );
+
     const { register, handleSubmit, reset, setFocus, setValue, watch, getValues, control } = useForm<Product>();
+    const registerWithMask = useHookFormMask(register);
 
     useEffect(() => {
         if (!isNewSellOpened) {
@@ -55,7 +58,7 @@ const Form = ({ addProduct, port }: FormProps) => {
                     setAvailableQuantity(produtoFilter?.qtd || 1);
                 }
             }
-            if (name === "unitario") {
+            if (name === "unitario" || name === 'quantidade') {
                 const unitario = getValues("unitario")
                 const quantidade = getValues("quantidade");
 
@@ -98,7 +101,6 @@ const Form = ({ addProduct, port }: FormProps) => {
                         // Iterando sobre os valores encontrados
                         matches.forEach(match => {
                             setValue('peso', Number(match));
-                            console.log(Number(match));
                             // Faça algo com cada valor encontrado
                         });
                     }
@@ -142,11 +144,11 @@ const Form = ({ addProduct, port }: FormProps) => {
             <div className="grid gap-6 mb-6 md:grid-cols-4 w-full">
                 <div>
                     <label htmlFor="unitario" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Valor Unitário</label>
-                    <input {...register('unitario')} type="text" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
+                    <input {...registerWithMask('unitario', 'currency', { radixPoint: ',', autoUnmask: true, unmaskAsNumber: true, prefix: 'R$ ', placeholder: '0,00' })} type="text" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
                 </div>
                 <div>
                     <label htmlFor="total" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Total</label>
-                    <input {...register('total')} readOnly type="text" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
+                    <input {...registerWithMask('total', 'currency', { radixPoint: ',', autoUnmask: true, unmaskAsNumber: true, prefix: 'R$ ', placeholder: '0,00' })} readOnly type="text" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
                 </div>
                 <div>
                     <label htmlFor="peso" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Peso</label>

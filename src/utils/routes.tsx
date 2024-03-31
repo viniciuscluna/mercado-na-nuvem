@@ -24,6 +24,7 @@ import Dashboard from "../pages/dashboard";
 import Office from "../pages/records/office/office";
 import AddOffice from "../pages/records/office/addOffice";
 import EditOffice from "../pages/records/office/editOffice";
+import Reports from "../pages/reports/reports";
 
 export const routes =  createBrowserRouter([
     {
@@ -127,6 +128,10 @@ export const routes =  createBrowserRouter([
                   element: <EditOffice />,
                 },
               ],
+            },
+            {
+              path: "/logged/reports",
+              element: <Reports />,
             },
           ],
         },

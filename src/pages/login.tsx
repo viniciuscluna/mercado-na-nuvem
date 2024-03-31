@@ -35,6 +35,7 @@ const Login = () => {
 
   const navigate = useNavigate();
   const [bearerToken, setBearer] = useLocalStorage<string>(STORAGE_KEY, "");
+  const [, setUserName] = useLocalStorage<string>("UserName", "");
 
   const { mutateAsync, isPending, data, isSuccess, isError } = useMutation({
     mutationFn: login,
@@ -47,6 +48,7 @@ const Login = () => {
   useEffect(() => {
     if (isSuccess) {
       setBearer(data.accessToken);
+      setUserName(data.userName);
     }
   }, [data, isSuccess, setBearer]);
 

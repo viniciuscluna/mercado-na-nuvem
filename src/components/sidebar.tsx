@@ -6,6 +6,7 @@ import { STORAGE_KEY } from "../constants/key";
 
 const Sidebar = () => {
   const [, setLocalStorage] = useLocalStorage<string>(STORAGE_KEY, "");
+  const [userName,] = useLocalStorage<string>("UserName", "");
   const navigate = useNavigate();
   const [menuOpened, setMenuOpened] = useState<boolean>(false);
   const [recordsClicked, setRecordsClicked] = useState<boolean>(false);
@@ -56,7 +57,7 @@ const Sidebar = () => {
         <div className="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
           <ul className="space-y-2 font-medium">
             <li>
-              <h1 className="h-full px-3 py-4 text-gray-200">Bem-vindo, Ronaldo
+              <h1 className="h-full px-3 py-4 text-gray-200">Bem-vindo, {userName}
               </h1>                
             </li>
             <li>

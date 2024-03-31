@@ -13,6 +13,8 @@ import { add } from "../services/ordemVendaService";
 import { Produto } from "../domain/produto";
 import { useNotificationStore } from "../stores/notificationStore";
 import Add from "../components/service/product/add";
+import { OrdemVenda } from "../domain/ordemVenda";
+import { EOrdemVendaStatus } from "../domain/eOrdemVendaStatus";
 
 export type Product = {
   codigo: string;
@@ -78,9 +80,11 @@ const Service = () => {
   }, [isSuccess]);
 
   const onSubmit: SubmitHandler<FormValues> = (data) => {
-    const submit = {
+    const submit: OrdemVenda = {
       cpf: data.cpf,
-      produtos: data.products.map(product => (toProduct(product)))
+      produtos: data.products.map(product => (toProduct(product))),
+      status: EOrdemVendaStatus.aberto,
+      referencia: ''
     };
     mutateAsync(submit);
     reset();
