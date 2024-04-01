@@ -73,7 +73,7 @@ const ListProdutos = ({ produtos }: ListProps) => {
                 onClick={() => openMenu(index)}
               >
                 <span>
-                  {first.marca} - {first.modelo} - Total {currencyFormat(total)} (Qtd: {produto.products.length})
+                (Qtd: {produto.products.length}) {first.nome} {first.modelo} - Total {currencyFormat(total)} 
                 </span>
                 <svg
                   data-accordion-icon
@@ -98,13 +98,16 @@ const ListProdutos = ({ produtos }: ListProps) => {
             <div className={isOpened ? "" : "hidden"}>
               <div className="py-5 border-b border-gray-200 dark:border-gray-700">
                 <p className="mb-2 text-gray-500 dark:text-gray-400">
-                  <strong>Valor de compra: (unitário) </strong> {currencyFormat(first.valor_Compra)}
+                  <strong>Valor de compra (un): </strong> {currencyFormat(first.valor_Compra)}
                 </p>
                 <p className="mb-2 text-gray-500 dark:text-gray-400">
-                  <strong>Nome: </strong> {first.nome}
+                  <strong>Valor de venda (un): </strong> {currencyFormat(first.valor_Venda)}
                 </p>
                 <p className="mb-2 text-gray-500 dark:text-gray-400">
-                  <strong>Garantia: </strong> {first.garantia}
+                  <strong>Prod. Nome: </strong> {first.nome}
+                </p>
+                <p className="mb-2 text-gray-500 dark:text-gray-400">
+                  <strong>Marca: </strong> {first.marca}
                 </p>
               </div>
             </div>

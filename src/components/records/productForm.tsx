@@ -1,5 +1,6 @@
 import { useForm } from "react-hook-form";
 import { Produto } from "../../domain/produto";
+import { useHookFormMask } from "use-mask-input";
 
 type ProductFormProps = {
   submitCallback: (produto: Produto) => void;
@@ -18,6 +19,7 @@ const ProdutoForm = ({
   const { register, handleSubmit } = useForm<Produto>({
     defaultValues: defaultValues,
   });
+  const registerWithMask = useHookFormMask(register);
 
   return (
     <form onSubmit={handleSubmit(submitCallback)}>
@@ -65,22 +67,7 @@ const ProdutoForm = ({
           maxLength={200}
           className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
         />
-      </div>
-      <div className="mb-6">
-        <label
-          htmlFor="garantia"
-          className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-        >
-          Garantia
-        </label>
-        <input
-          type="text"
-          id="garantia"
-          maxLength={200}
-          {...register("garantia")}
-          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-        />
-      </div>
+      </div>      
       <div className="mb-6">
         <label
           htmlFor="valor_Compra"
@@ -89,10 +76,10 @@ const ProdutoForm = ({
           Valor Compra*
         </label>
         <input
-          type="number"
+          type="text"
           id="valor_Compra"
           min={0}
-          {...register("valor_Compra", { valueAsNumber: true, required: true })}
+          {...registerWithMask("valor_Compra", 'currency', { radixPoint: ',', autoUnmask: true, unmaskAsNumber: true, prefix: 'R$ ', placeholder: '0,00' })}
           className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
         />
       </div>
@@ -104,9 +91,9 @@ const ProdutoForm = ({
           Valor Venda*
         </label>
         <input
-          type="number"
+          type="text"
           id="valor_Venda"
-          {...register("valor_Venda")}
+          {...registerWithMask("valor_Venda", 'currency', { radixPoint: ',', autoUnmask: true, unmaskAsNumber: true, prefix: 'R$ ', placeholder: '0,00' })}
           min={0}
           className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
         />
@@ -153,6 +140,21 @@ const ProdutoForm = ({
           type="date"
           id="data_validade"
           {...register("data_validade", { valueAsDate: true })}
+          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        />
+      </div>
+      <div className="mb-6">
+        <label
+          htmlFor="garantia"
+          className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+        >
+          Garantia
+        </label>
+        <input
+          type="text"
+          id="garantia"
+          maxLength={200}
+          {...register("garantia")}
           className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
         />
       </div>

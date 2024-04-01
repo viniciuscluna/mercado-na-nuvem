@@ -5,7 +5,7 @@ import ListProdutos from "./listProdutos";
 import { currencyFormat } from "../../utils/currencyFormater";
 import { OrdemVenda } from "../../domain/ordemVenda";
 import { EOrdemVendaStatus } from "../../domain/eOrdemVendaStatus";
-
+import { cpfFormater } from "../../utils/cpfFormater";
 type CardProps = {
   ordemVenda: OrdemVenda;
 };
@@ -30,11 +30,11 @@ const Card = ({ ordemVenda }: CardProps) => {
         <Badge status={ordemVenda.status || EOrdemVendaStatus.pendente} />
       </div>
       <div className="flex flex-wrap gap-x-5">
-        <p className="mb-3 text-gray-700 dark:text-gray-400 ">
+        <p className="mb-4 text-gray-700 dark:text-gray-400 ">
           <span className="font-bold">{currencyFormat(total)}</span>
         </p>
-        <p className="mb-3 text-gray-700 dark:text-gray-400">
-          <span className="font-bold"> Cliente:</span> {ordemVenda.cpf}
+        <p className="mb-4 text-gray-700 dark:text-gray-400">
+          <span className="font-bold"> Cpf:</span> {cpfFormater(ordemVenda.cpf)}
         </p>
       </div>
       {ordemVenda.produtos.length > 0 ? (
