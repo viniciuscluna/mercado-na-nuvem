@@ -19,8 +19,6 @@ import { EOrdemVendaStatus } from "../domain/eOrdemVendaStatus";
 export type Product = {
   codigo: string;
   nome: string;
-  marca: string;
-  modelo: string;
   quantidade: number;
   unitario: number;
   total: number;
