@@ -7,6 +7,7 @@ import { useIncludeServiceStore } from "../../../stores/includeServiceStore";
 import { useQuery } from "@tanstack/react-query";
 import { getAllGroupByProduct } from "../../../services/produtoService";
 import { useHookFormMask } from "use-mask-input";
+import { useNotificationStore } from "../../../stores/notificationStore";
 
 type FormProps = {
     control: Control<FormValues, any>;
@@ -31,6 +32,10 @@ const Form = ({ addProduct, port }: FormProps) => {
 
     const { register, handleSubmit, reset, setFocus, setValue, watch, getValues, control } = useForm<Product>();
     const registerWithMask = useHookFormMask(register);
+
+    const addNotification = useNotificationStore(
+        (state) => state.addNotification
+      );
 
     useEffect(() => {
         if (!isNewSellOpened) {
@@ -116,8 +121,16 @@ const Form = ({ addProduct, port }: FormProps) => {
     const onSubmit: SubmitHandler<Product> = (data) => {
         if (Array.isArray(produtos)) {
             const productFilter = produtos.find(f => f.id === data.produto);
+    
+        if (data.nome == '' || undefined) {
+            addNotification({
+                message: "Por favor selecione um produto.",
+                type: "error"
+              })
+        }else{
             addProduct({ ...data, modelo: productFilter?.modelo || '', marca: productFilter?.marca || ''});
-            reset();
+                reset();
+        }
         }
     }
 
@@ -127,7 +140,7 @@ const Form = ({ addProduct, port }: FormProps) => {
                 {Array.isArray(produtos) && produtos &&
                     <div>
                         <label htmlFor="produto" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Pesquisar Produto</label>
-                        <SelectFilter name="produto" values={produtos.map(item => ({ name: `${item.marca} - ${item.nome}` || '', value: item.id || '' }))} searchPlaceholder="Selecione o Produto" emptyPlaceholder="Selecione" search="" control={control} />
+                        <SelectFilter name="produto" values={produtos.map(item => ({ name: `${item.nome} ${item.modelo} - ${item.marca}` || '', value: item.id || '' }))} searchPlaceholder="Selecione o Produto" emptyPlaceholder="Selecione" search="" control={control} />
                     </div>
                 }
                 <div>
@@ -137,7 +150,7 @@ const Form = ({ addProduct, port }: FormProps) => {
                 <div>
                     <label htmlFor="nome" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nome</label>
                     <input readOnly={!noProducts} {...register('nome')} type="text" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
-                </div>
+                             </div>
                 <div>
                     <label htmlFor="quantidade" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Quantidade</label>
                     <input {...register('quantidade')} type="number" min={availableQuantity === 0 ? 0 : 1} max={availableQuantity} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
