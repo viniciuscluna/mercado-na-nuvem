@@ -114,8 +114,11 @@ const Form = ({ addProduct, port }: FormProps) => {
     }, [port]);
 
     const onSubmit: SubmitHandler<Product> = (data) => {
-        addProduct(data);
-        reset();
+        if (Array.isArray(produtos)) {
+            const productFilter = produtos.find(f => f.id === data.produto);
+            addProduct({ ...data, modelo: productFilter?.modelo || '', marca: productFilter?.marca || ''});
+            reset();
+        }
     }
 
     return (

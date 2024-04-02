@@ -24,6 +24,8 @@ export type Product = {
   total: number;
   produto: string;
   peso: number;
+  modelo: string;
+  marca: string;
 }
 export type FormValues = {
   cpf: string;
@@ -34,7 +36,6 @@ export type FormValues = {
 const toProduct = (product: Product): Produto => {
   return ({
     ...product,
-    marca: '',
     valor_Compra: product.total,
     valor_Venda: product.total,
     qtd: product.quantidade,
