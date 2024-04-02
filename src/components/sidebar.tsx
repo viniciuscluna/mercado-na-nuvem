@@ -7,6 +7,7 @@ import { STORAGE_KEY } from "../constants/key";
 const Sidebar = () => {
   const [, setLocalStorage] = useLocalStorage<string>(STORAGE_KEY, "");
   const [userName,] = useLocalStorage<string>("UserName", "");
+  const [roles,] = useLocalStorage<string[]>("Roles", []);
   const navigate = useNavigate();
   const [menuOpened, setMenuOpened] = useState<boolean>(false);
   const [recordsClicked, setRecordsClicked] = useState<boolean>(false);
@@ -15,6 +16,8 @@ const Sidebar = () => {
     () => location.pathname.startsWith("/logged/records") || recordsClicked,
     [location.pathname, recordsClicked]
   );
+
+  const isAdmin = useMemo(() => roles.find(f => f === "Administrador") ? true : false, [roles]);
 
   const onLeaving = () => {
     setLocalStorage('');
@@ -58,7 +61,7 @@ const Sidebar = () => {
           <ul className="space-y-2 font-medium">
             <li>
               <h1 className="h-full px-3 py-4 text-gray-200">Bem-vindo, {userName}
-              </h1>                
+              </h1>
             </li>
             <li>
               <NavLink
@@ -230,19 +233,21 @@ const Sidebar = () => {
                     Filial
                   </NavLink>
                 </li>
-                <li>
-                  <NavLink
-                    to="records/serviceProvider"
-                    className={(props) =>
-                      classNames(
-                        "flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700",
-                        props.isActive ? "bg-gray-100 dark:bg-gray-700" : ""
-                      )
-                    }
-                  >
-                    Prestador
-                  </NavLink>
-                </li>
+                {isAdmin ?
+                  <li>
+                    <NavLink
+                      to="records/serviceProvider"
+                      className={(props) =>
+                        classNames(
+                          "flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700",
+                          props.isActive ? "bg-gray-100 dark:bg-gray-700" : ""
+                        )
+                      }
+                    >
+                      Prestador
+                    </NavLink>
+                  </li>
+                  : <></>}
                 <li>
                   <NavLink
                     to="records/product"
