@@ -139,36 +139,36 @@ const Form = ({ addProduct, port }: FormProps) => {
             <div className="grid gap-6 mb-6 md:grid-cols-4 w-full">
                 {Array.isArray(produtos) && produtos &&
                     <div>
-                        <label htmlFor="produto" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Pesquisar Produto</label>
+                        <label htmlFor="produto" className="block mb-2 text-sm font-medium text-transparent dark:text-white" style={{ textShadow: '0 0 4px black' }}>Pesquisar Produto</label>
                         <SelectFilter name="produto" values={produtos.map(item => ({ name: `${item.nome} ${item.modelo} - ${item.marca}` || '', value: item.id || '' }))} searchPlaceholder="Selecione o Produto" emptyPlaceholder="Selecione" search="" control={control} />
                     </div>
                 }
                 <div>
-                    <label htmlFor="codigo" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Código</label>
-                    <input readOnly={!noProducts} {...register("codigo")} autoFocus type="text" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
+                    <label htmlFor="codigo" className="block mb-2 text-sm font-medium text-transparent dark:text-white" style={{ textShadow: '0 0 4px black' }}>Código</label>
+                    <input readOnly={!noProducts} {...register("codigo")} autoFocus type="text" className="bg-[#1a3a31] border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:bg-[#1a3a31] dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
                 </div>
                 <div>
-                    <label htmlFor="nome" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nome</label>
-                    <input readOnly={!noProducts} {...register('nome')} type="text" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
+                    <label htmlFor="nome" className="block mb-2 text-sm font-medium text-transparent dark:text-white" style={{ textShadow: '0 0 4px black' }}>Nome</label>
+                    <input readOnly={!noProducts} {...register('nome')} type="text" className="bg-[#1a3a31] border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:bg-[#1a3a31] dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
                              </div>
                 <div>
-                    <label htmlFor="quantidade" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Quantidade</label>
-                    <input {...register('quantidade')} type="number" min={availableQuantity === 0 ? 0 : 1} max={availableQuantity} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
+                    <label htmlFor="quantidade" className="block mb-2 text-sm font-medium text-transparent dark:text-white" style={{ textShadow: '0 0 4px black' }}>Quantidade</label>
+                    <input {...register('quantidade')} type="number" min={availableQuantity === 0 ? 0 : 1} max={availableQuantity} className="bg-[#1a3a31] border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:bg-[#1a3a31] dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
                 </div>
 
             </div>
             <div className="grid gap-6 mb-6 md:grid-cols-4 w-full">
                 <div>
-                    <label htmlFor="unitario" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Valor Unitário</label>
-                    <input {...registerWithMask('unitario', 'currency', { radixPoint: ',', autoUnmask: true, unmaskAsNumber: true, prefix: 'R$ ', placeholder: '0,00' })} type="text" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
+                    <label htmlFor="unitario" className="block mb-2 text-sm font-medium text-transparent dark:text-white" style={{ textShadow: '0 0 4px black' }}>Valor Unitário</label>
+                    <input {...registerWithMask('unitario', 'currency', { radixPoint: ',', autoUnmask: true, unmaskAsNumber: true, prefix: 'R$ ', placeholder: '0,00' })} type="text" className="bg-[#1a3a31] border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:bg-[#1a3a31] dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
                 </div>
                 <div>
-                    <label htmlFor="total" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Total</label>
-                    <input {...registerWithMask('total', 'currency', { radixPoint: ',', autoUnmask: true, unmaskAsNumber: true, prefix: 'R$ ', placeholder: '0,00' })} readOnly type="text" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
+                    <label htmlFor="total" className="block mb-2 text-sm font-medium text-transparent dark:text-white" style={{ textShadow: '0 0 4px black' }}>Total</label>
+                    <input {...registerWithMask('total', 'currency', { radixPoint: ',', autoUnmask: true, unmaskAsNumber: true, prefix: 'R$ ', placeholder: '0,00' })} readOnly type="text" className="bg-[#1a3a31] border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:bg-[#1a3a31] dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
                 </div>
                 <div>
-                    <label htmlFor="peso" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Peso</label>
-                    <input {...register('peso')} type="text" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
+                    <label htmlFor="peso" className="block mb-2 text-sm font-medium text-transparent dark:text-white" style={{ textShadow: '0 0 4px black' }}>Peso</label>
+                    <input {...register('peso')} type="text" className="bg-[#1a3a31] border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:bg-[#1a3a31] dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
                 </div>
                 <div>
                     <br />

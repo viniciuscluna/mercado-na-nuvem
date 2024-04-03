@@ -60,7 +60,7 @@ const Logged = () => {
 
   if (isPending) return <Loader />;
   return (
-    <main className="dark:bg-gray-900 h-full flex flex-col sm:flex-row">
+    <main className="dark:bg-[#ffe2cc] h-full flex flex-col sm:flex-row">
       <Sidebar />
       <section className="px-4 sm:ml-64 w-full flex flex-col overflow-auto">
         <div className="flex flex-col grow">
