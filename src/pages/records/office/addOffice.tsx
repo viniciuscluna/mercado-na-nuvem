@@ -32,7 +32,6 @@ const AddOffice = () => {
   });
 
   const onSubmit = (filial: FilialServico) => {
-    console.log(filial)
     categoriaResult.mutateAsync(filial);
   };
 

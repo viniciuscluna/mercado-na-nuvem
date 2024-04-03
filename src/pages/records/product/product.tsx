@@ -9,6 +9,7 @@ import { useEffect, useState } from "react";
 import { useNotificationStore } from "../../../stores/notificationStore";
 import ConfirmModal from "../../../components/confirmModal";
 import { currencyFormat } from "../../../utils/currencyFormater";
+import FileImport from "./fileImport";
 
 type ProductFields = {
   nome: string;
@@ -23,7 +24,7 @@ const Product = () => {
   );
   const { data, isPending: isPending, mutateAsync } = useMutation({
     mutationFn: (fields: ProductFields) =>
-    getAllGroupByProduct(fields.nome, fields.marca, fields.modelo),
+      getAllGroupByProduct(fields.nome, fields.marca, fields.modelo),
   });
 
   const { register, handleSubmit, getValues } = useForm<ProductFields>();
@@ -44,6 +45,11 @@ const Product = () => {
     }
   });
 
+  const onUpload = () => {
+    const formValues = getValues();
+      mutateAsync(formValues);
+  }
+ 
   useEffect(() => {
     mutateAsync({ nome: "", marca: "", modelo: "" });
   }, [mutateAsync]);
@@ -130,6 +136,8 @@ const Product = () => {
           >
             Incluir
           </button>
+
+         <FileImport onUploadCallback={onUpload} />
         </div>
         <div className="relative overflow-x-auto">
           <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
@@ -177,7 +185,7 @@ const Product = () => {
                   <td className="px-6 py-4">{produto.qtd}</td>
                   <td className="px-6 py-4">
                     <div className="flex gap-1">
-                      <NavLink title="Editar" to={`ProdutoInfo/${produto.nome}/${produto.marca}/${produto.modelo == "" ? "empty":produto.modelo}`}>
+                      <NavLink title="Editar" to={`ProdutoInfo/${produto.nome}/${produto.marca}/${produto.modelo == "" ? "empty" : produto.modelo}`}>
                         <svg
                           className="w-4 h-4 text-green-800 dark:text-green-400"
                           aria-hidden="true"
