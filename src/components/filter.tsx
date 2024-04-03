@@ -20,8 +20,8 @@ export const Filter = ({
           onClick={() => setIsOpened((state) => !state)}
           className={classNames(
             isOpened
-              ? "flex items-center justify-between w-full p-5 font-medium rtl:text-right border border-gray-200 rounded-t-xl focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-white"
-              : "flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border  border-gray-200 rounded-t-xl focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3"
+              ? "flex items-center justify-between w-full p-5 font-medium rtl:text-right border border-gray-200 rounded-t-xl focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:bg-[#1a3a31] hover:bg-[#1a3a31] dark:hover:bg-[#1a3a31] gap-3 bg-[#1a3a31] dark:bg-[#1a3a31] text-gray-900 dark:text-white"
+              : "flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border  border-gray-200 rounded-t-xl focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:bg-[#1a3a31] dark:text-gray-400 hover:bg-[#1a3a31] dark:hover:bg-[#1a3a31] gap-3"
           )}
           data-accordion-target="#accordion-collapse-body-1"
           aria-expanded="true"
@@ -70,7 +70,7 @@ export const Filter = ({
         className={classNames(!isOpened ? "hidden" : "")}
         aria-labelledby="accordion-collapse-heading-1"
       >
-        <div className="p-5 border border-gray-200 dark:border-gray-700 dark:bg-gray-900">
+        <div className="p-5 border border-gray-200 dark:border-gray-700 dark:bg-[#1a3a31]">
           {children}
         </div>
       </div>

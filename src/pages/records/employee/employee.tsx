@@ -19,24 +19,24 @@ type EmployeFields = {
 
 const Employee = () => {
   const [isDisableSelect, setDisableSelect] = useState<string | undefined>(undefined);
-  
+
   const navigate = useNavigate();
 
   const addNotification = useNotificationStore(
     (state) => state.addNotification
   );
-  
+
   const { data, isPending, mutateAsync } = useMutation({
     mutationFn: (fields: EmployeFields) =>
       getAll(fields.nome, fields.cpf, fields.email),
   });
 
   const { register, handleSubmit, getValues } = useForm<EmployeFields>();
- 
+
   const registerWithMask = useHookFormMask(register);
   const formatTel = phoneFormater;
   const formatCpf = cpfFormater;
-  
+
   const { mutateAsync: mutateDisableAsync } = useMutation({
     mutationFn: (id: string) =>
       desabled(id),
@@ -62,20 +62,20 @@ const Employee = () => {
   if (isPending) <Loader />;
 
   return (
-    <> 
-    <ConfirmModal
-    isOpened={isDisableSelect !== undefined}
-    onNoCallback={() => setDisableSelect(undefined)}
-    onYesCallback={() => mutateDisableAsync(isDisableSelect || "")}
-    message="Deseja realmente excluir o(a) funcionario(a)?"
-  />
+    <>
+      <ConfirmModal
+        isOpened={isDisableSelect !== undefined}
+        onNoCallback={() => setDisableSelect(undefined)}
+        onYesCallback={() => mutateDisableAsync(isDisableSelect || "")}
+        message="Deseja realmente excluir o(a) funcionario(a)?"
+      />
       <div className="flex flex-col mt-8">
         <div className="flex flex-col  gap-5">
           {/* Barra de filtro */}
 
           <Filter defaultValue={false}>
             <form onSubmit={handleSubmit(onSubmit)}>
-            <div className="mt-4">
+              <div className="mt-4">
                 {/* Aqui você pode adicionar os campos de filtro */}
                 <div className="mb-6">
                   <label
@@ -88,7 +88,7 @@ const Employee = () => {
                     type="text"
                     id="nome"
                     {...register("nome")}
-                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-[#1a3a31] dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="Entre com o nome aqui"
                   />
                 </div>
@@ -103,7 +103,7 @@ const Employee = () => {
                     type="text"
                     id="cpf"
                     {...registerWithMask("cpf", "cpf")}
-                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-[#1a3a31] dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="Entre com o Cpf aqui"
                   />
                 </div>
@@ -118,7 +118,7 @@ const Employee = () => {
                     type="text"
                     id="email"
                     {...registerWithMask("email", "email")}
-                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-[#1a3a31] dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="Entre com o e-mail aqui"
                   />
                 </div>
@@ -142,7 +142,7 @@ const Employee = () => {
           </div>
           <div className="relative overflow-x-auto">
             <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-              <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+              <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-[#1a3a31] dark:text-gray-400">
                 <tr>
                   <th scope="col" className="px-6 py-3">
                     Nome
@@ -167,7 +167,7 @@ const Employee = () => {
               <tbody>
                 {data instanceof Array ? data?.map((funcionario, index) => (
                   <tr
-                    className="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
+                    className="odd:bg-white odd:dark:bg-[#1a3a31] even:bg-gray-50 even:bg-[#1a3a30e6] dark:border-gray-700"
                     key={index}
                   >
                     <th
@@ -194,7 +194,7 @@ const Employee = () => {
                             <path d="M13.243 3.2 7.359 9.081a.5.5 0 0 0-.136.256L6.51 12.9a.5.5 0 0 0 .59.59l3.566-.713a.5.5 0 0 0 .255-.136L16.8 6.757 13.243 3.2Z" />
                           </svg>
                         </NavLink>
-                        <button type="button" title="Excluir" onClick={()=> setDisableSelect(funcionario.id)}>
+                        <button type="button" title="Excluir" onClick={() => setDisableSelect(funcionario.id)}>
                           <svg className="w-4 h-4 text-red-800 dark:text-red-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 20">
                             <path d="M17 4h-4V2a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v2H1a1 1 0 0 0 0 2h1v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V6h1a1 1 0 1 0 0-2ZM7 2h4v2H7V2Zm1 14a1 1 0 1 1-2 0V8a1 1 0 0 1 2 0v8Zm4 0a1 1 0 0 1-2 0V8a1 1 0 0 1 2 0v8Z" />
                           </svg>

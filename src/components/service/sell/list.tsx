@@ -36,7 +36,7 @@ const List = ({ products, remove }: ListProps) => {
                 </thead>
                 <tbody>
                     {products && products.map((product, idx) =>
-                        <tr className="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700" key={idx}>
+                        <tr className="odd:bg-white odd:dark:bg-[#1a3a31] even:bg-gray-50 even:bg-[#1a3a30e6] border-b dark:border-gray-700" key={idx}>
                             <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                 {product.codigo}
                             </th>

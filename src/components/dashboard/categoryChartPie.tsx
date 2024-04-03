@@ -46,7 +46,7 @@ const CategoryChartPie = () => {
   //   { name: "Group D", value: 200 },
   // ];
 
-  const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"];
+  const COLORS = ["#0a6cc2", "#17bf9f", "#dba021", "#c76332", "#30b837", "#db3939"];
 
   const { isPending, data: responseData } = useQuery({
     queryKey: ["dash/category"],
@@ -72,7 +72,7 @@ const CategoryChartPie = () => {
       </h5>
       <br />
       <div
-        className="p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700"
+        className="p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-[#1a3a30e6] dark:bg-[#1a3a31] dark:border-gray-700 dark:hover:bg-[#1a3a30e6]"
         style={{ width: "100%", height: "30dvh" }}
       >
         <ResponsiveContainer>

@@ -22,7 +22,7 @@ const Card = ({ ordemVenda }: CardProps) => {
 
 
   return (
-    <div className="w-full p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+    <div className="w-full p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-[#1a3a31] dark:border-gray-700">
       <div className="flex justify-between items-center w-full mb-2">
         <h5 className="text-sm font-bold tracking-tight text-gray-900 dark:text-white">
           {ordemVenda.referencia}
