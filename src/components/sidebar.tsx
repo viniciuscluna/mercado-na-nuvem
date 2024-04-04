@@ -31,7 +31,7 @@ const Sidebar = () => {
           data-drawer-target="default-sidebar"
           data-drawer-toggle="default-sidebar"
           type="button"
-          className="inline-flex items-center p-2 mt-2 ml-3 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+          className="inline-flex items-center p-2 mt-2 ml-3 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-[#1a3a31] focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-[#1a3a31] dark:focus:ring-gray-600"
           onClick={() => setMenuOpened((value) => !value)}
         >
           <span className="sr-only">Abrir Menu</span>
@@ -57,7 +57,7 @@ const Sidebar = () => {
         )}
         aria-label="Sidebar"
       >
-        <div className="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
+        <div className="h-full px-3 py-4 overflow-y-auto bg-[#908782] dark:bg-[#908782]">
           <ul className="space-y-2 font-medium">
             <li>
               <h1 className="h-full px-3 py-4 text-gray-200">Bem-vindo, {userName}
@@ -69,13 +69,13 @@ const Sidebar = () => {
                 to="/logged/dashboard"
                 className={(props) =>
                   classNames(
-                    "flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group",
-                    props.isActive ? "bg-gray-100 dark:bg-gray-700" : ""
+                    "flex items-center p-2 text-[#1a3a31] rounded-lg dark:text-white hover:bg-[#1a3a31] dark:hover:bg-[#1a3a31] group",
+                    props.isActive ? "hover:bg-[#1a3a31] dark:bg-[#1a3a31]" : "text-[#1a3a31] hover:bg-[#1a3a31] dark:hover:bg-[#1a3a31]"
                   )
                 }
               >
                 <svg
-                  className="w-5 h-5 text-gray-500 dark:text-white"
+                  className="w-5 h-5 text-[#1a3a31] dark:text-[#1a3a31]"
                   aria-hidden="true"
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -106,13 +106,13 @@ const Sidebar = () => {
                 to="/logged/services"
                 className={(props) =>
                   classNames(
-                    "flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group",
-                    props.isActive ? "bg-gray-100 dark:bg-gray-700" : ""
+                    "flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-[#1a3a31] dark:hover:bg-[#1a3a31] group",
+                    props.isActive ? "hover:bg-[#1a3a31] dark:bg-[#1a3a31]" : ""
                   )
                 }
               >
                 <svg
-                  className="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                  className="flex-shrink-0 w-5 h-5 text-[#1a3a31] transition duration-75 dark:text-[#1a3a31] group-hover:text-[#1a3a31] dark:group-hover:text-white"
                   aria-hidden="true"
                   xmlns="http://www.w3.org/2000/svg"
                   fill="currentColor"
@@ -129,13 +129,13 @@ const Sidebar = () => {
                 to="/logged/reports"
                 className={(props) =>
                   classNames(
-                    "flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group",
-                    props.isActive ? "bg-gray-100 dark:bg-gray-700" : ""
+                    "flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-[#1a3a31] dark:hover:bg-[#1a3a31] group",
+                    props.isActive ? "hover:bg-[#1a3a31] dark:bg-[#1a3a31]" : ""
                   )
                 }
               >
                 <svg
-                  className="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                  className="flex-shrink-0 w-5 h-5 text-[#1a3a31] transition duration-75 dark:text-[#1a3a31] group-hover:text-[#1a3a31] dark:group-hover:text-white"
                   aria-hidden="true"
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -158,10 +158,10 @@ const Sidebar = () => {
               <a
                 href="#"
                 onClick={() => setRecordsClicked((clk) => !clk)}
-                className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+                className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-[#1a3a31] dark:hover:bg-[#1a3a31] group"
               >
                 <svg
-                  className="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                  className="flex-shrink-0 w-5 h-5 text-[#1a3a31] transition duration-75 dark:text-[#1a3a31]0 group-hover:text-[#1a3a31] dark:group-hover:text-white"
                   aria-hidden="true"
                   xmlns="http://www.w3.org/2000/svg"
                   fill="currentColor"
@@ -199,8 +199,8 @@ const Sidebar = () => {
                     to="records/customer"
                     className={(props) =>
                       classNames(
-                        "flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700",
-                        props.isActive ? "bg-gray-100 dark:bg-gray-700" : ""
+                        "flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-[#1a3a31] dark:text-white dark:hover:bg-[#1a3a31]",
+                        props.isActive ? "hover:bg-[#1a3a31] dark:bg-[#1a3a31]" : ""
                       )
                     }
                   >
@@ -212,8 +212,8 @@ const Sidebar = () => {
                     to="records/employee"
                     className={(props) =>
                       classNames(
-                        "flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700",
-                        props.isActive ? "bg-gray-100 dark:bg-gray-700" : ""
+                        "flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-[#1a3a31] dark:text-white dark:hover:bg-[#1a3a31]",
+                        props.isActive ? "hover:bg-[#1a3a31] dark:bg-[#1a3a31]" : ""
                       )
                     }
                   >
@@ -225,8 +225,8 @@ const Sidebar = () => {
                     to="records/office"
                     className={(props) =>
                       classNames(
-                        "flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700",
-                        props.isActive ? "bg-gray-100 dark:bg-gray-700" : ""
+                        "flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-[#1a3a31] dark:text-white dark:hover:bg-[#1a3a31]",
+                        props.isActive ? "hover:bg-[#1a3a31] dark:bg-[#1a3a31]" : ""
                       )
                     }
                   >
@@ -239,8 +239,8 @@ const Sidebar = () => {
                       to="records/serviceProvider"
                       className={(props) =>
                         classNames(
-                          "flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700",
-                          props.isActive ? "bg-gray-100 dark:bg-gray-700" : ""
+                          "flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-[#1a3a31] dark:text-white dark:hover:bg-[#1a3a31]",
+                          props.isActive ? "hover:bg-[#1a3a31] dark:bg-[#1a3a31]" : ""
                         )
                       }
                     >
@@ -253,8 +253,8 @@ const Sidebar = () => {
                     to="records/product"
                     className={(props) =>
                       classNames(
-                        "flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700",
-                        props.isActive ? "bg-gray-100 dark:bg-gray-700" : ""
+                        "flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-[#1a3a31] dark:text-white dark:hover:bg-[#1a3a31]",
+                        props.isActive ? "hover:bg-[#1a3a31] dark:bg-[#1a3a31]" : ""
                       )
                     }
                   >
@@ -267,10 +267,10 @@ const Sidebar = () => {
               <a
                 href="#"
                 onClick={onLeaving}
-                className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+                className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-[#1a3a31] dark:hover:bg-[#1a3a31] group"
               >
                 <svg
-                  className="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                  className="flex-shrink-0 w-5 h-5 text-[#1a3a31] transition duration-75 dark:text-[#1a3a31] group-hover:text-[#1a3a31] dark:group-hover:text-white"
                   aria-hidden="true"
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"

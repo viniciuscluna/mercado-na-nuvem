@@ -9,6 +9,7 @@ export interface Produto extends Base {
     garantia?: string;
     valor_Compra: number;
     valor_Venda: number;
+    peso: number;
     qtd: number;
     prestadorId?: string;
     prestacaoServicoId?: string;

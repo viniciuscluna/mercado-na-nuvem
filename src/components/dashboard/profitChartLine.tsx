@@ -3,7 +3,6 @@ import {
   Rectangle,
   XAxis,
   YAxis,
-  CartesianGrid,
   Tooltip,
   Legend,
   ResponsiveContainer,
@@ -14,6 +13,20 @@ import { getDiaryProfit } from "../../services/dashboardService";
 import { useMemo } from "react";
 import LoadingIndicator from "../loadingIndicator";
 import { currencyFormat } from "../../utils/currencyFormater";
+
+const CustomTooltip = ({ active, payload, label }: any) => {
+  if (active && payload && payload.length) {
+    return (
+      <div className="custom-tooltip bg-green-300 p-3 shadow rounded-md dark:text-white" >
+        <p className="label">Data: {`${label}`}</p>
+        <p className="label">Valor: {` ${currencyFormat(payload[0].value)}`}</p>
+        <p className="desc">Valores faturados no dia.</p>
+      </div>
+    );
+  }
+
+  return null;
+};
 
 const ProfitChartLine = () => {
 
@@ -27,12 +40,15 @@ const ProfitChartLine = () => {
       responseData ?
         responseData.map((item) => ({
           name: item.key,
-          Valor: Number(item.count),
+          Faturamento: Number(item.count),
         })) : [],
     [responseData]
   );
 
   if (isPending) return <LoadingIndicator />;
+
+
+
 
   return (
     <div className="p-2 w-full">
@@ -41,7 +57,7 @@ const ProfitChartLine = () => {
       </h5>
       <br />
       <div
-        className="p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700"
+        className="p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-[#1a3a30e6] dark:bg-[#1a3a31] dark:border-gray-700 dark:hover:bg-[#1a3a30e6]"
         style={{ width: "100%", height: "40dvh" }}
       >
         <ResponsiveContainer>
@@ -53,21 +69,22 @@ const ProfitChartLine = () => {
               top: 5,
               right: 30,
               left: 20,
-              bottom: 5,
+              bottom: 5
             }}
           >
-            <CartesianGrid strokeDasharray="3 3" />
             <XAxis dataKey="name" />
             <YAxis />
-            <Tooltip formatter={(number: number) => currencyFormat(number)} />
+            <Tooltip formatter={(number: number) => currencyFormat(number)} content={<CustomTooltip />} />
             <Legend />
             <Line
-              dataKey="Valor"
-              fill="#82ca9d"
+              type="monotone"
+              dataKey="Faturamento"
+              fill="#ffffff"
               activeDot={<Rectangle fill="gold" stroke="purple" />}
             />
           </LineChart>
         </ResponsiveContainer>
+
       </div>
     </div>
   );

@@ -83,7 +83,7 @@ const SelectFilter = ({
     <>
       <button
         type="button"
-        className="flex justify-between items-center bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        className="flex justify-between items-center bg-[#1a3a31] border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-[#1a3a31] dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
         onClick={() => setIsExpanded((state) => !state)}
         onBlur={() => onBlur()}
       >
@@ -107,7 +107,7 @@ const SelectFilter = ({
       <input type="hidden" ref={ref} />
       <div
         className={classNames(
-          "z-10 bg-white rounded-lg shadow dark:bg-gray-700 mt-1 absolute w-fit",
+          "z-10 bg-white rounded-lg shadow dark:bg-[#1a3a31] mt-1 absolute w-fit",
           !isExpanded ? "hidden" : ""
         )}
       >
@@ -136,7 +136,7 @@ const SelectFilter = ({
             <input
               type="text"
               id="input-group-search"
-              className="block w-full p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              className="block w-full p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-[#1a3a31] focus:ring-blue-500 focus:border-blue-500 dark:bg-[#1a3a31] dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               placeholder={searchPlaceholder}
               onChange={(e) => setSearchInput(e.target.value)}
               onKeyDown={(e) => handleInputKey(e)}

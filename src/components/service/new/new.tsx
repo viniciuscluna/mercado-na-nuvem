@@ -24,11 +24,15 @@ const New = ({ setFocus, setPort, port, register }: NewProps) => {
 
 
     const handleAdd = async () => {
-        if (!port) {
+        if (!port && !isMobileDevice()) {
             const port = await navigator.serial.requestPort();            
             setPort(port);
         }
         setIsNewSellOpened(false);
+    }
+    const isMobileDevice = () => {
+        const mobileMediaQuery = window.matchMedia("(max-width: 767px)");
+        return mobileMediaQuery.matches;
     }
 
     return (

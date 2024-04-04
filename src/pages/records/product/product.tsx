@@ -47,9 +47,9 @@ const Product = () => {
 
   const onUpload = () => {
     const formValues = getValues();
-      mutateAsync(formValues);
+    mutateAsync(formValues);
   }
- 
+
   useEffect(() => {
     mutateAsync({ nome: "", marca: "", modelo: "" });
   }, [mutateAsync]);
@@ -84,7 +84,7 @@ const Product = () => {
                   type="text"
                   id="nome"
                   {...register("nome")}
-                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-[#1a3a31] dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   placeholder="Entre com o nome aqui"
                 />
               </div>
@@ -99,7 +99,7 @@ const Product = () => {
                   type="text"
                   id="marca"
                   {...register("marca")}
-                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-[#1a3a31] dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   placeholder="Entre com a marca aqui"
                 />
               </div>
@@ -114,7 +114,7 @@ const Product = () => {
                   type="text"
                   id="modelo"
                   {...register("modelo")}
-                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-[#1a3a31] dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   placeholder="Entre com o modelo aqui"
                 />
               </div>
@@ -137,11 +137,11 @@ const Product = () => {
             Incluir
           </button>
 
-         <FileImport onUploadCallback={onUpload} />
+          <FileImport onUploadCallback={onUpload} />
         </div>
         <div className="relative overflow-x-auto">
           <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-            <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-[#1a3a31] dark:text-gray-400">
               <tr>
                 <th scope="col" className="px-6 py-3">
                   Nome
@@ -169,7 +169,7 @@ const Product = () => {
             <tbody>
               {data instanceof Array ? data?.map((produto, index) => (
                 <tr
-                  className="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
+                  className="odd:bg-white odd:dark:bg-[#1a3a31] even:bg-gray-50 even:bg-[#1a3a30e6] dark:border-gray-700"
                   key={index}
                 >
                   <th

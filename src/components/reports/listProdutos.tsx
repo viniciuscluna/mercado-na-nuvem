@@ -55,7 +55,7 @@ const ListProdutos = ({ produtos }: ListProps) => {
     >
       {produtosList.map((produto, index) => {
         const isOpened = produto.isOpened;
-        const first = produto.products[0];
+        const first = produto.products[0];        
         const total = produto.products.reduce(
           (accumulator, object) => accumulator + object.valor_Venda,
           0
@@ -97,6 +97,12 @@ const ListProdutos = ({ produtos }: ListProps) => {
             </h3>
             <div className={isOpened ? "" : "hidden"}>
               <div className="py-5 border-b border-gray-200 dark:border-gray-700">
+              <p className="mb-2 text-gray-500 dark:text-gray-400">
+                  <strong>Prod. Nome: </strong> {first.nome}
+                </p>
+                <p className="mb-2 text-gray-500 dark:text-gray-400">
+                  <strong>Marca: </strong> {first.marca}
+                </p>
                 <p className="mb-2 text-gray-500 dark:text-gray-400">
                   <strong>Valor de compra (un): </strong> {currencyFormat(first.valor_Compra)}
                 </p>
@@ -104,10 +110,7 @@ const ListProdutos = ({ produtos }: ListProps) => {
                   <strong>Valor de venda (un): </strong> {currencyFormat(first.valor_Venda)}
                 </p>
                 <p className="mb-2 text-gray-500 dark:text-gray-400">
-                  <strong>Prod. Nome: </strong> {first.nome}
-                </p>
-                <p className="mb-2 text-gray-500 dark:text-gray-400">
-                  <strong>Marca: </strong> {first.marca}
+                  <strong>Peso (grm/kg): </strong> {first.peso}
                 </p>
               </div>
             </div>

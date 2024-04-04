@@ -29,7 +29,7 @@ const Filter = ({ inputCallback, updateCallback }: FilterProps) => {
             <input
               type="text"
               id="referencia-search"
-              className="block w-full p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+              className="block w-full p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-[#1a3a31] focus:ring-primary-500 focus:border-primary-500 dark:bg-[#1a3a31] dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
               placeholder="Referência"
               onChange={(event) => inputCallback(event.target.value)}
             />
@@ -41,7 +41,7 @@ const Filter = ({ inputCallback, updateCallback }: FilterProps) => {
           <button
             id="actionsDropdownButton"
             data-dropdown-toggle="actionsDropdown"
-            className="flex items-center justify-center w-full px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg md:w-auto focus:outline-none hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+            className="flex items-center justify-center w-full px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg md:w-auto focus:outline-none hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-[#1a3a31] dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-[#1a3a31]"
             type="button"
             onClick={() => updateCallback()}
           >
@@ -62,7 +62,7 @@ const Filter = ({ inputCallback, updateCallback }: FilterProps) => {
           </button>
           <div
             id="actionsDropdown"
-            className="z-10 hidden bg-white divide-y divide-gray-100 rounded shadow w-44 dark:bg-gray-700 dark:divide-gray-600"
+            className="z-10 hidden bg-white divide-y divide-gray-100 rounded shadow w-44 dark:bg-[#1a3a31] dark:divide-gray-600"
           >
             <ul
               className="py-1 text-sm text-gray-700 dark:text-gray-200"
@@ -89,7 +89,7 @@ const Filter = ({ inputCallback, updateCallback }: FilterProps) => {
           <button
             id="filterDropdownButton"
             data-dropdown-toggle="filterDropdown"
-            className="flex items-center justify-center w-full px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg md:w-auto focus:outline-none hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+            className="flex items-center justify-center w-full px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg md:w-auto focus:outline-none hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-[#1a3a31] dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-[#1a3a31]"
             type="button"
           >
             <svg
@@ -122,7 +122,7 @@ const Filter = ({ inputCallback, updateCallback }: FilterProps) => {
           </button>
           <div
             id="filterDropdown"
-            className="z-10 hidden w-48 p-3 bg-white rounded-lg shadow dark:bg-gray-700"
+            className="z-10 hidden w-48 p-3 bg-white rounded-lg shadow dark:bg-[#1a3a31]"
           >
             <h6 className="mb-3 text-sm font-medium text-gray-900 dark:text-white">
               Category
