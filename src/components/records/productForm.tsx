@@ -112,6 +112,7 @@ const ProdutoForm = ({
         >
           <option value="0">Litro</option>
           <option value="1">Unidade</option>
+          <option value="3">Kilo/Grama</option>
         </select>
       </div>      
       <div className="mb-6">

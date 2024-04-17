@@ -66,3 +66,12 @@ export const getDiaryProfit = async (): Promise<PieResponse[]> => {
     )
   ).data;
 };
+
+
+export const getMonthlyProfit = async (): Promise<PieResponse[]> => {
+  return (
+    await instanceApi.get<PieResponse[]>(
+      "/dashboard/DashboardBarVendaMeses"
+    )
+  ).data;
+};
