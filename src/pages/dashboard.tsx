@@ -4,6 +4,7 @@ import CardProfit from "../components/dashboard/cardProfit";
 import CardSoldProducts from "../components/dashboard/cardSoldProducts";
 import CategoryChartPie from "../components/dashboard/categoryChartPie";
 import ProfitChartLine from "../components/dashboard/profitChartLine";
+import MonthProfitChartBar from "../components/dashboard/monthProfitChartBar";
 import SubCategoryChartPie from "../components/dashboard/subCategoryChartPie";
 
 const Dashboard = () => {
@@ -26,6 +27,7 @@ const Dashboard = () => {
       </div>
       <div className="flex-nowrap">
         <ProfitChartLine />
+        <MonthProfitChartBar />
       </div>
     </>
   );
