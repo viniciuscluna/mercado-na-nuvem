@@ -26,9 +26,9 @@ const CustomerForm = ({
       <div className="mb-6">
         <label
           htmlFor="nome"
-          className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+          className="block mb-2 text-sm font-medium text-gray-900 dark:text-green-700"
         >
-          Nome*
+          Nome:*
         </label>
         <input
           {...register("nome", {
@@ -43,9 +43,9 @@ const CustomerForm = ({
       <div className="mb-6">
         <label
           htmlFor="rg"
-          className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+          className="block mb-2 text-sm font-medium text-gray-900 dark:text-green-700"
         >
-          RG
+          RG:
         </label>
         <input
           {...registerWithMask("rg", ["99999999-9"])}
@@ -57,9 +57,9 @@ const CustomerForm = ({
       <div className="mb-6">
         <label
           htmlFor="cpf"
-          className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+          className="block mb-2 text-sm font-medium text-gray-900 dark:text-green-700"
         >
-          CPF*
+          CPF:*
         </label>
         <input
           {...registerWithMask("cpf", "cpf", {
@@ -73,9 +73,9 @@ const CustomerForm = ({
       <div className="mb-6">
         <label
           htmlFor="endereco"
-          className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+          className="block mb-2 text-sm font-medium text-gray-900 dark:text-green-700"
         >
-          Endereço*
+          Endereço:*
         </label>
         <input
           {...register("endereco", {
@@ -90,9 +90,9 @@ const CustomerForm = ({
       <div className="mb-6">
         <label
           htmlFor="telefone"
-          className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+          className="block mb-2 text-sm font-medium text-gray-900 dark:text-green-700"
         >
-          Telefone*
+          Telefone:*
         </label>
         <input
           {...registerWithMask("telefone", ["(99) [9]9999-9999"], {
@@ -106,9 +106,9 @@ const CustomerForm = ({
       <div className="mb-6">
         <label
           htmlFor="email"
-          className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+          className="block mb-2 text-sm font-medium text-gray-900 dark:text-green-700"
         >
-          Email*
+          Email:*
         </label>
         <input
           {...registerWithMask("email", "email", {
@@ -123,7 +123,7 @@ const CustomerForm = ({
       <div className="flex gap-4">
         <button
           type="button"
-          className="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-[#1a3a31]"
+          className="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:text-white dark:hover:bg-[#1a3a31]"
           onClick={() => backCallback()}
         >
           Voltar

@@ -24,7 +24,7 @@ const OfficeForm = ({
       <div className="mb-6">
         <label
           htmlFor="nome"
-          className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+          className="block mb-2 text-sm font-medium text-gray-900 dark:text-green-700"
         >
           Nome*
         </label>
@@ -39,7 +39,7 @@ const OfficeForm = ({
       <div className="mb-6">
         <label
           htmlFor="logradouro"
-          className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+          className="block mb-2 text-sm font-medium text-gray-900 dark:text-green-700"
         >
           Logradouro*
         </label>
@@ -53,7 +53,7 @@ const OfficeForm = ({
       <div className="mb-6">
         <label
           htmlFor="cep"
-          className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+          className="block mb-2 text-sm font-medium text-gray-900 dark:text-green-700"
         >
           CEP*
         </label>
@@ -67,7 +67,7 @@ const OfficeForm = ({
       <div className="mb-6">
         <label
           htmlFor="numero"
-          className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+          className="block mb-2 text-sm font-medium text-gray-900 dark:text-green-700"
         >
           Número*
         </label>
@@ -81,7 +81,7 @@ const OfficeForm = ({
       <div className="mb-6">
         <label
           htmlFor="matriz"
-          className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+          className="block mb-2 text-sm font-medium text-gray-900 dark:text-green-700"
         >
           Matriz?
         </label>
@@ -95,7 +95,7 @@ const OfficeForm = ({
       <div className="mb-6">
         <label
           htmlFor="observacao"
-          className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+          className="block mb-2 text-sm font-medium text-gray-900 dark:text-green-700"
         >
           Observação*
         </label>
@@ -109,7 +109,7 @@ const OfficeForm = ({
       <div className="flex gap-4">
         <button
           type="button"
-          className="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-[#1a3a31]"
+          className="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:text-white dark:hover:bg-[#1a3a31]"
           onClick={() => backCallback()}
         >
           Voltar
