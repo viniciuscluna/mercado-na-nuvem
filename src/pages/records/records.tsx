@@ -19,7 +19,7 @@ const Records = () => {
 
   return (
     <div className="flex flex-col">
-      <h2 className="text-3xl font-extrabold dark:text-white mt-6 mb-4">
+      <h2 className="text-3xl font-extrabold dark:text-slate-950 mt-6 mb-4">
         {page}
       </h2>
       <Outlet />

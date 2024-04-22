@@ -69,51 +69,51 @@ const ServiceProvider = () => {
                     </div>
                     <div className="relative overflow-x-auto">
                         <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                            <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                            <thead className="text-xs text-gray-700 uppercase bg-[#1a3a31] dark:bg-[#1a3a31] dark:text-gray-400">
                                 <tr>
-                                    <th scope="col" className="px-6 py-3">
+                                    <th scope="col" className="px-6 py-3 text-lime-100">
                                         Tipo Cadastro
                                     </th>
-                                    <th scope="col" className="px-6 py-3">
+                                    <th scope="col" className="px-6 py-3 text-lime-100">
                                         Nome
                                     </th>
-                                    <th scope="col" className="px-6 py-3">
+                                    <th scope="col" className="px-6 py-3 text-lime-100">
                                         CPF/CNPJ
                                     </th>
-                                    <th scope="col" className="px-6 py-3">
+                                    <th scope="col" className="px-6 py-3 text-lime-100">
                                         Telefone
                                     </th>
-                                    <th scope="col" className="px-6 py-3">
+                                    <th scope="col" className="px-6 py-3 text-lime-100">
                                         E-mail
                                     </th>
-                                    <th scope="col" className="px-6 py-3">
+                                    <th scope="col" className="px-6 py-3 text-lime-100">
                                         Endereço
                                     </th>
-                                    <th scope="col" className="px-6 py-3">
+                                    <th scope="col" className="px-6 py-3 text-lime-100">
                                         Razão Social
                                     </th>
-                                    <th scope="col" className="px-6 py-3">
+                                    <th scope="col" className="px-6 py-3 text-lime-100">
                                         Nome Fantasia
                                     </th>
-                                    <th scope="col" className="px-6 py-3">
+                                    <th scope="col" className="px-6 py-3 text-lime-100">
                                         Nome Representante
                                     </th>
-                                    <th scope="col" className="px-6 py-3">
+                                    <th scope="col" className="px-6 py-3 text-lime-100">
                                         Cpf Representante
                                     </th>
-                                    <th scope="col" className="px-6 py-3">
+                                    <th scope="col" className="px-6 py-3 text-lime-100">
                                         E-mail Representante
                                     </th>
-                                    <th scope="col" className="px-6 py-3">
+                                    <th scope="col" className="px-6 py-3 text-lime-100">
                                         Sit. Cadastral
                                     </th>
-                                    <th scope="col" className="px-6 py-3">
+                                    <th scope="col" className="px-6 py-3 text-lime-100">
                                         Dat. Abertura
                                     </th>
-                                    <th scope="col" className="px-6 py-3">
+                                    <th scope="col" className="px-6 py-3 text-lime-100">
                                         Dat. Cadastro
                                     </th>
-                                    <th scope="col" className="px-6 py-3">
+                                    <th scope="col" className="px-6 py-3 text-lime-100">
                                         Ações
                                     </th>
                                 </tr>
@@ -121,7 +121,7 @@ const ServiceProvider = () => {
                             <tbody>
                                 {data instanceof Array ? data?.map((prestador, index) => (
                                     <tr
-                                        className="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
+                                        className="bg-white border-b dark:bg-[#1a3a31] dark:border-gray-700"
                                         key={index}
                                     >
                                         <th
@@ -136,19 +136,20 @@ const ServiceProvider = () => {
                                         >
                                             {prestador.nome}
                                         </th>
-                                        <td className="px-6 py-4">{prestador.cnpj == '' ? formatCpf(prestador.cpf) : formatCpnj(prestador.cnpj)}</td>
-                                        <td className="px-6 py-4">{formatTel(prestador.telefone)}</td>
-                                        <td className="px-6 py-4">{prestador.emailEmpresa}</td>
-                                        <td className="px-6 py-4">{prestador.endereco}</td>
-                                        <td className="px-6 py-4">{prestador.razaoSocial}</td>
-                                        <td className="px-6 py-4">{prestador.nomeFantasia}</td>
-                                        <td className="px-6 py-4">{prestador.nomeRepresentante}</td>
-                                        <td className="px-6 py-4">{cpfFormater(prestador.cpfRepresentante ?? "")}</td>
-                                        <td className="px-6 py-4">{prestador.emailRepresentante}</td>
-                                        <td className="px-6 py-4">{prestador.situacaoCadastral == 0 ? "Desativado" : "Ativo"}</td>
-                                        <td className="px-6 py-4">{formatDate(prestador.dataCadastro == null ? "" : prestador.dataCadastro)}</td>
-                                        <td className="px-6 py-4">{formatDate(prestador.dataAbertura == null ? "" : prestador.dataAbertura)}</td>
-                                        <td className="px-6 py-4">
+                                        <td className="px-6 py-4 text-slate-200">{prestador.cnpj == '' ? formatCpf(prestador.cpf) : formatCpnj(prestador.cnpj)}</td>
+                                        <td className="px-6 py-4 text-slate-200">{formatTel(prestador.telefone)}</td>
+                                        <td className="px-6 py-4 text-slate-200">{prestador.emailEmpresa}</td>
+                                        <td className="px-6 py-4 text-slate-200">{prestador.endereco}</td>
+                                        <td className="px-6 py-4 text-slate-200">{prestador.nomeRepresentante}</td>
+                                        <td className="px-6 py-4 text-slate-200">{prestador.razaoSocial}</td>
+                                        <td className="px-6 py-4 text-slate-200">{prestador.nomeFantasia}</td>
+                                        <td className="px-6 py-4 text-slate-200">{prestador.nomeRepresentante}</td>
+                                        <td className="px-6 py-4 text-slate-200">{cpfFormater(prestador.cpfRepresentante ?? "")}</td>
+                                        <td className="px-6 py-4 text-slate-200">{prestador.emailRepresentante}</td>
+                                        <td className="px-6 py-4 text-slate-200">{prestador.situacaoCadastral == 0 ? "Desativado" : "Ativo"}</td>
+                                        <td className="px-6 py-4 text-slate-200">{formatDate(prestador.dataCadastro == null ? "" : prestador.dataCadastro)}</td>
+                                        <td className="px-6 py-4 text-slate-200">{formatDate(prestador.dataAbertura == null ? "" : prestador.dataAbertura)}</td>
+                                        <td className="px-6 py-4 text-slate-200">
                                             <div className="flex gap-1">
                                                 <NavLink title="Editar" to={`edit/${prestador.id}`}>
                                                     <svg
