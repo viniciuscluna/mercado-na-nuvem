@@ -72,7 +72,7 @@ const CategoryChartPie = () => {
       </h5>
       <br />
       <div
-        className="p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-[#1a3a30e6] dark:bg-[#1a3a31] dark:border-gray-700 dark:hover:bg-[#1a3a30e6]"
+        className="p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-[#1a3a30e6] dark:bg-[#00593E] dark:border-gray-700 dark:hover:bg-[#1a3a30e6]"
         style={{ width: "100%", height: "30dvh" }}
       >
         <ResponsiveContainer>

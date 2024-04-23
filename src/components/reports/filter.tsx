@@ -29,7 +29,7 @@ const Filter = ({ inputCallback, updateCallback }: FilterProps) => {
             <input
               type="text"
               id="referencia-search"
-              className="block w-full p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-[#1a3a31] focus:ring-primary-500 focus:border-primary-500 dark:bg-[#1a3a31] dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+              className="block w-full p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-[#1a3a31] focus:ring-primary-500 focus:border-primary-500 dark:bg-[#00593E] dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
               placeholder="Referência"
               onChange={(event) => inputCallback(event.target.value)}
             />
@@ -41,7 +41,7 @@ const Filter = ({ inputCallback, updateCallback }: FilterProps) => {
           <button
             id="actionsDropdownButton"
             data-dropdown-toggle="actionsDropdown"
-            className="flex items-center justify-center w-full px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg md:w-auto focus:outline-none hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-[#1a3a31] dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-[#1a3a31]"
+            className="flex items-center justify-center w-full px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg md:w-auto focus:outline-none hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-[#00593E] dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-[#1a3a31]"
             type="button"
             onClick={() => updateCallback()}
           >
@@ -89,7 +89,7 @@ const Filter = ({ inputCallback, updateCallback }: FilterProps) => {
           <button
             id="filterDropdownButton"
             data-dropdown-toggle="filterDropdown"
-            className="flex items-center justify-center w-full px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg md:w-auto focus:outline-none hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-[#1a3a31] dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-[#1a3a31]"
+            className="flex items-center justify-center w-full px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg md:w-auto focus:outline-none hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-[#00593E] dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-[#1a3a31]"
             type="button"
           >
             <svg

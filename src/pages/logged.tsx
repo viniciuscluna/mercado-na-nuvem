@@ -60,7 +60,7 @@ const Logged = () => {
 
   if (isPending) return <Loader />;
   return (
-    <main className="dark:bg-[url('/public/FUNDO.png')] bg-contain h-full flex flex-col sm:flex-row ">
+    <main className="bg-[url('/public/FUNDO.png')] bg-contain h-full flex flex-col sm:flex-row ">
       <Sidebar />
       <section className="px-4 sm:ml-64 w-full flex flex-col overflow-auto  ">
         <div className="flex flex-col grow">

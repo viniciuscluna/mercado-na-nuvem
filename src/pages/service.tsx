@@ -120,7 +120,7 @@ const Service = () => {
     <>
       <div className="flex justify-between items-center flex-col h-full">
         <h2 className="text-3xl font-extrabold dark:text-white my-6">
-          <span className="text-transparent dark:text-sky-950" style={{ textShadow: '0 0 4px black' }}>Venda de Produtos</span>
+          <span className="text-white dark:text-sky-950" style={{ textShadow: '0 0 4px black' }}>Venda de Produtos</span>
         </h2>
         <Shortcuts />
         <Form control={control} addProduct={appendProduct} port={port} />
