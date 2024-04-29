@@ -169,7 +169,7 @@ const Product = () => {
             <tbody>
               {data instanceof Array ? data?.map((produto, index) => (
                 <tr
-                  className="odd:bg-white odd:dark:bg-[#1a3a31] even:bg-gray-50 even:bg-[#1a3a30e6] dark:border-gray-700"
+                  className="odd:bg-white odd:dark:bg-[#1a3a31] even:bg-zinc-500 even:bg-[#71717a] dark:border-gray-700"
                   key={index}
                 >
                   <th
@@ -178,12 +178,12 @@ const Product = () => {
                   >
                     {produto.nome}
                   </th>
-                  <td className="px-6 py-4">{produto.marca}</td>
-                  <td className="px-6 py-4">{produto.modelo}</td>
-                  <td className="px-6 py-4">{formatMoeda(produto.valor_Venda)}</td>
-                  <td className="px-6 py-4">{formatMoeda(produto.valor_Compra)}</td>
-                  <td className="px-6 py-4">{produto.qtd}</td>
-                  <td className="px-6 py-4">
+                  <td className="px-6 py-4 font-medium dark:text-white">{produto.marca}</td>
+                  <td className="px-6 py-4 font-medium dark:text-white">{produto.modelo}</td>
+                  <td className="px-6 py-4 font-medium dark:text-white">{formatMoeda(produto.valor_Venda)}</td>
+                  <td className="px-6 py-4 font-medium dark:text-white">{formatMoeda(produto.valor_Compra)}</td>
+                  <td className="px-6 py-4 font-medium dark:text-white">{produto.qtd}</td>
+                  <td className="px-6 py-4 font-medium dark:text-white">
                     <div className="flex gap-1">
                       <NavLink title="Editar" to={`ProdutoInfo/${produto.nome}/${produto.marca}/${produto.modelo == "" ? "empty" : produto.modelo}`}>
                         <svg

@@ -21,7 +21,7 @@ export const Filter = ({
           className={classNames(
             isOpened
               ? "flex items-center justify-between w-full p-5 font-medium rtl:text-right border border-gray-200 rounded-t-xl focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:bg-[#1a3a31] hover:bg-[#1a3a31] dark:hover:bg-[#1a3a31] gap-3 bg-[#1a3a31] dark:bg-[#1a3a31] text-gray-900 dark:text-white"
-              : "flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border  border-gray-200 rounded-t-xl focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:bg-[#00593E] dark:text-gray-400 hover:bg-[#1a3a31] dark:hover:bg-[#1a3a31] gap-3"
+              : "flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border  border-gray-200 rounded-t-xl focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:bg-[#00593E] dark:text-gray-200 hover:bg-[#1a3a31] dark:hover:bg-[#1a3a31] gap-3"
           )}
           data-accordion-target="#accordion-collapse-body-1"
           aria-expanded="true"

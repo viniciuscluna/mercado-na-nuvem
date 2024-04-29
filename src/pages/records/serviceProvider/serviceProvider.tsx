@@ -121,35 +121,35 @@ const ServiceProvider = () => {
                             <tbody>
                                 {data instanceof Array ? data?.map((prestador, index) => (
                                     <tr
-                                        className="bg-white border-b dark:bg-[#1a3a31] dark:border-gray-700"
+                                        className="odd:dark:bg-[#1a3a31] even:bg-zinc-500 even:bg-[#71717a] dark:border-gray-700"
                                         key={index}
                                     >
                                         <th
                                             scope="row"
-                                            className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                                            className=" px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white "
                                         >
                                             {prestador.situacaoCadastral == 0 ? "Cpf" : "Cnpj"}
                                         </th>
                                         <th
                                             scope="row"
-                                            className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                                            className=" px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
                                         >
                                             {prestador.nome}
                                         </th>
-                                        <td className="px-6 py-4 text-slate-200">{prestador.cnpj == '' ? formatCpf(prestador.cpf) : formatCpnj(prestador.cnpj)}</td>
-                                        <td className="px-6 py-4 text-slate-200">{formatTel(prestador.telefone)}</td>
-                                        <td className="px-6 py-4 text-slate-200">{prestador.emailEmpresa}</td>
-                                        <td className="px-6 py-4 text-slate-200">{prestador.endereco}</td>
-                                        <td className="px-6 py-4 text-slate-200">{prestador.nomeRepresentante}</td>
-                                        <td className="px-6 py-4 text-slate-200">{prestador.razaoSocial}</td>
-                                        <td className="px-6 py-4 text-slate-200">{prestador.nomeFantasia}</td>
-                                        <td className="px-6 py-4 text-slate-200">{prestador.nomeRepresentante}</td>
-                                        <td className="px-6 py-4 text-slate-200">{cpfFormater(prestador.cpfRepresentante ?? "")}</td>
-                                        <td className="px-6 py-4 text-slate-200">{prestador.emailRepresentante}</td>
-                                        <td className="px-6 py-4 text-slate-200">{prestador.situacaoCadastral == 0 ? "Desativado" : "Ativo"}</td>
-                                        <td className="px-6 py-4 text-slate-200">{formatDate(prestador.dataCadastro == null ? "" : prestador.dataCadastro)}</td>
-                                        <td className="px-6 py-4 text-slate-200">{formatDate(prestador.dataAbertura == null ? "" : prestador.dataAbertura)}</td>
-                                        <td className="px-6 py-4 text-slate-200">
+                                        <td className="px-6 py-4 font-medium dark:text-white">{prestador.cnpj == '' ? formatCpf(prestador.cpf) : formatCpnj(prestador.cnpj)}</td>
+                                        <td className="px-6 py-4 font-medium dark:text-white">{formatTel(prestador.telefone)}</td>
+                                        <td className="px-6 py-4 font-medium dark:text-white">{prestador.emailEmpresa}</td>
+                                        <td className="px-6 py-4 font-medium dark:text-white">{prestador.endereco}</td>
+                                        <td className="px-6 py-4 font-medium dark:text-white">{prestador.nomeRepresentante}</td>
+                                        <td className="px-6 py-4 font-medium dark:text-white">{prestador.razaoSocial}</td>
+                                        <td className="px-6 py-4 font-medium dark:text-white">{prestador.nomeFantasia}</td>
+                                        <td className="px-6 py-4 font-medium dark:text-white">{prestador.nomeRepresentante}</td>
+                                        <td className="px-6 py-4 font-medium dark:text-white">{cpfFormater(prestador.cpfRepresentante ?? "")}</td>
+                                        <td className="px-6 py-4 font-medium dark:text-white">{prestador.emailRepresentante}</td>
+                                        <td className="px-6 py-4 font-medium dark:text-white">{prestador.situacaoCadastral == 0 ? "Desativado" : "Ativo"}</td>
+                                        <td className="px-6 py-4 font-medium dark:text-white">{formatDate(prestador.dataCadastro == null ? "" : prestador.dataCadastro)}</td>
+                                        <td className="px-6 py-4 font-medium dark:text-white">{formatDate(prestador.dataAbertura == null ? "" : prestador.dataAbertura)}</td>
+                                        <td className="px-6 py-4 font-medium dark:text-white">
                                             <div className="flex gap-1">
                                                 <NavLink title="Editar" to={`edit/${prestador.id}`}>
                                                     <svg

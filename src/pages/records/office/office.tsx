@@ -150,7 +150,7 @@ const Office = () => {
                             <tbody>
                                 {data instanceof Array ? data?.map((filial, index) => (
                                     <tr
-                                        className="odd:bg-white odd:dark:bg-[#1a3a31] even:bg-gray-50 even:bg-[#1a3a30e6] dark:border-gray-700"
+                                        className="odd:dark:bg-[#1a3a31] even:bg-zinc-500 even:bg-[#71717a] dark:border-gray-700"
                                         key={index}
                                     >
                                         <th
@@ -159,13 +159,13 @@ const Office = () => {
                                         >
                                             {filial.nome}
                                         </th>
-                                        <td className="px-6 py-4">{filial.logradouro}</td>
-                                        <td className="px-6 py-4">{filial.numero}</td>
-                                        <td className="px-6 py-4">{formatCep(filial.cep)}</td>
-                                        <td className="px-6 py-4">{filial.matriz == true ? "Sim" : "Não"}</td>
-                                        <td className="px-6 py-4">{filial.observacao}</td>
-                                        <td className="px-6 py-4">{filial.dataCadastro ? formatDate(filial.dataCadastro) : 'Data não disponível'}</td>
-                                        <td className="px-6 py-4">
+                                        <td className="px-6 py-4 font-medium dark:text-white">{filial.logradouro}</td>
+                                        <td className="px-6 py-4 font-medium dark:text-white">{filial.numero}</td>
+                                        <td className="px-6 py-4 font-medium dark:text-white">{formatCep(filial.cep)}</td>
+                                        <td className="px-6 py-4 font-medium dark:text-white">{filial.matriz == true ? "Sim" : "Não"}</td>
+                                        <td className="px-6 py-4 font-medium dark:text-white">{filial.observacao}</td>
+                                        <td className="px-6 py-4 font-medium dark:text-white">{filial.dataCadastro ? formatDate(filial.dataCadastro) : 'Data não disponível'}</td>
+                                        <td className="px-6 py-4 font-medium dark:text-white">
                                             <div className="flex gap-1">
                                                 <NavLink title="Editar" to={`edit/${filial.id}`}>
                                                     <svg

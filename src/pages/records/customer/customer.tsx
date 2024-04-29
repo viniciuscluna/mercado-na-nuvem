@@ -162,7 +162,7 @@ const Customer = () => {
             <tbody>
               {data instanceof Array ? data?.map((cliente, index) => (
                 <tr
-                  className="odd:bg-white odd:dark:bg-[#1a3a31] even:bg-gray-50 even:bg-[#1a3a30e6] dark:border-gray-700"
+                  className="odd:dark:bg-[#1a3a31] even:bg-zinc-500 even:bg-[#00593E] dark:border-gray-700"
                   key={index}
                 >
                   <th
@@ -171,11 +171,11 @@ const Customer = () => {
                   >
                     {cliente.nome}
                   </th>
-                  <td className="px-6 py-4">{formatCpf(cliente.cpf)}</td>
-                  <td className="px-6 py-4">{cliente.email}</td>
-                  <td className="px-6 py-4">{cliente.endereco}</td>
-                  <td className="px-6 py-4">{cliente.dataCadastro ? formatDate(cliente.dataCadastro) : 'Data não disponível'}</td>
-                  <td className="px-6 py-4">
+                  <td className="px-6 py-4 font-medium dark:text-white">{formatCpf(cliente.cpf)}</td>
+                  <td className="px-6 py-4 font-medium dark:text-white">{cliente.email}</td>
+                  <td className="px-6 py-4 font-medium dark:text-white">{cliente.endereco}</td>
+                  <td className="px-6 py-4 font-medium dark:text-white">{cliente.dataCadastro ? formatDate(cliente.dataCadastro) : 'Data não disponível'}</td>
+                  <td className="px-6 py-4 font-medium dark:text-white">
                     <div className="flex gap-1">
                       <NavLink title="Editar" to={`edit/${cliente.id}`}>
                         <svg
