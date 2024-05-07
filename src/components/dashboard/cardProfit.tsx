@@ -9,7 +9,7 @@ const CardProfit = () => {
     queryFn: getProfit,
   });
   if (isPending) return <LoadingIndicator />;
-  return <GenericCard label="Receita no mês" amount={data?.valor ?? 0} />;
+  return <GenericCard label="Receita no mês" amount={data?.valor ?? 0} icon="maos-usd"/>;
 };
 
 export default CardProfit;

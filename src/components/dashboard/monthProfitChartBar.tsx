@@ -52,7 +52,7 @@ const MonthProfitChartBar = () => {
 
   return (
     <div className="p-2 w-full">
-      <h5 className="text-center text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+      <h5 className="text-center text-2xl font-bold tracking-tight text-gray-900 dark:text-stone-500">
         Faturamento Mensal
       </h5>
       <br />

@@ -23,7 +23,7 @@ const CustomerForm = ({
 
   return (
     <form onSubmit={handleSubmit(submitCallback)}>
-      <div className="mb-6">
+      <div className="mb-6 mr-1 inline-block">
         <label
           htmlFor="nome"
           className="block mb-2 text-sm font-medium text-gray-900 dark:text-green-700"
@@ -37,10 +37,10 @@ const CustomerForm = ({
           type="text"
           id="nome"
           maxLength={125}
-          className="bg-[#1a3a31] border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-[#1a3a31] dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          className="bg-[#1a3a31] border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block pr-96 py-2.5 dark:bg-[#1a3a31] dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
         />
       </div>
-      <div className="mb-6">
+      <div className="mb-6 mr-3 inline-block">
         <label
           htmlFor="rg"
           className="block mb-2 text-sm font-medium text-gray-900 dark:text-green-700"
@@ -51,10 +51,10 @@ const CustomerForm = ({
           {...registerWithMask("rg", ["99999999-9"])}
           type="text"
           id="rg"
-          className="bg-[#1a3a31] border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-[#1a3a31] dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          className="bg-[#1a3a31] border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block pr-0.5 p-2.5 dark:bg-[#1a3a31] dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
         />
       </div>
-      <div className="mb-6">
+      <div className="mb-6 mr-3 inline-block">
         <label
           htmlFor="cpf"
           className="block mb-2 text-sm font-medium text-gray-900 dark:text-green-700"
@@ -67,27 +67,10 @@ const CustomerForm = ({
           })}
           type="text"
           id="cpf"
-          className="bg-[#1a3a31] border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-[#1a3a31] dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          className="bg-[#1a3a31] border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block pr-0.5 p-2.5 dark:bg-[#1a3a31] dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
         />
       </div>
-      <div className="mb-6">
-        <label
-          htmlFor="endereco"
-          className="block mb-2 text-sm font-medium text-gray-900 dark:text-green-700"
-        >
-          Endereço:*
-        </label>
-        <input
-          {...register("endereco", {
-            required: true,
-          })}
-          type="text"
-          id="endereco"
-          maxLength={250}
-          className="bg-[#1a3a31] border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-[#1a3a31] dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-        />
-      </div>
-      <div className="mb-6">
+      <div className="mb-6 inline-block">
         <label
           htmlFor="telefone"
           className="block mb-2 text-sm font-medium text-gray-900 dark:text-green-700"
@@ -100,10 +83,10 @@ const CustomerForm = ({
           })}
           type="text"
           id="telefone"
-          className="bg-[#1a3a31] border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-[#1a3a31] dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          className="bg-[#1a3a31] border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block pr-0.5 p-2.5 dark:bg-[#1a3a31] dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
         />
       </div>
-      <div className="mb-6">
+      <div className="mb-6 mr-1 inline-block">
         <label
           htmlFor="email"
           className="block mb-2 text-sm font-medium text-gray-900 dark:text-green-700"
@@ -117,10 +100,27 @@ const CustomerForm = ({
           type="text"
           id="email"
           maxLength={250}
-          className="bg-[#1a3a31] border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-[#1a3a31] dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          className="bg-[#1a3a31] border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block pr-96 py-2.5 dark:bg-[#1a3a31] dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
         />
       </div>
-      <div className="flex gap-4">
+      <div className="mb-6 inline-block">
+        <label
+          htmlFor="endereco"
+          className="block mb-2 text-sm font-medium text-gray-900 dark:text-green-700"
+        >
+          Endereço:*
+        </label>
+        <input
+          {...register("endereco", {
+            required: true,
+          })}
+          type="text"
+          id="endereco"
+          maxLength={250}
+          className="bg-[#1a3a31] border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block pr-96 py-2.5 dark:bg-[#1a3a31] dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        />
+      </div>
+      <div className="gap-4">
         <button
           type="button"
           className="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:text-white dark:hover:bg-[#1a3a31]"

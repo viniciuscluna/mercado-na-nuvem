@@ -10,7 +10,7 @@ const CardOS = () => {
       });
       if (isPending) return <LoadingIndicator />;
 
-  return <GenericCard label="OV neste mês" amount={data?.valor ?? 0} useCurrency={false} />;
+  return <GenericCard label="OV neste mês" amount={data?.valor ?? 0} useCurrency={false} icon="receita" />;
 };
 
 export default CardOS;

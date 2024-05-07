@@ -10,7 +10,7 @@ const CardClients = () => {
   });
   if (isPending) return <LoadingIndicator />;
 
-  return <GenericCard label="Novos clientes" amount={data?.valor ?? 0} useCurrency={false} />;
+  return <GenericCard label="Novos clientes" amount={data?.valor ?? 0} useCurrency={false} icon="clientes"/>;
 };
 
 export default CardClients;

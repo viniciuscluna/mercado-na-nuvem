@@ -157,7 +157,7 @@ const Customer = () => {
                 <th scope="col" className="px-6 py-3 text-lime-100">
                   Ações
                 </th>
-              </tr>
+              </tr> 
             </thead>
             <tbody>
               {data instanceof Array ? data?.map((cliente, index) => (

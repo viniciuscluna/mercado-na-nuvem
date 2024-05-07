@@ -36,7 +36,7 @@ const ServiceProviderForm = ({
           Tip. Cadastro*
         </label>
         <select
-          className="block w-full p-2 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-[#1a3a31] dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          className="block p-2 pr-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-[#1a3a31] dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           {...register("tipoCadastro", { valueAsNumber: true })}
         >
           <option value="0">
@@ -47,7 +47,7 @@ const ServiceProviderForm = ({
           </option>
         </select>
       </div>
-      <div className="mb-6">
+      <div className="mb-6 mr-1.5 inline-block">
         <label
           htmlFor="nome"
           className="block mb-2 text-sm font-medium text-gray-900 dark:text-green-700"
@@ -59,10 +59,10 @@ const ServiceProviderForm = ({
           maxLength={150}
           type="text"
           id="nome"
-          className="bg-[#1a3a31] border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-[#1a3a31] dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          className="bg-[#1a3a31] border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block pr-96 py-2.5 dark:bg-[#1a3a31] dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
         />
       </div>
-      <div className="mb-6">
+      <div className="mb-6 mr-1.5 inline-block">
         <label
           htmlFor="cpf"
           className="block mb-2 text-sm font-medium text-gray-900 dark:text-green-700"
@@ -75,10 +75,10 @@ const ServiceProviderForm = ({
           })}
           type="text"
           id="cpf"
-          className="bg-[#1a3a31] border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-[#1a3a31] dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          className="bg-[#1a3a31] border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block pr-24 p-2.5 dark:bg-[#1a3a31] dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
         />
       </div>
-      <div className="mb-6">
+      <div className="mb-6 inline-block">
         <label
           htmlFor="telefone"
           className="block mb-2 text-sm font-medium text-gray-900 dark:text-green-700"
@@ -91,7 +91,7 @@ const ServiceProviderForm = ({
           })}
           type="text"
           id="telefone"
-          className="bg-[#1a3a31] border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-[#1a3a31] dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          className="bg-[#1a3a31] border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block pr-24 py-2.5 dark:bg-[#1a3a31] dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
         />
       </div>
       <div className="mb-6">
