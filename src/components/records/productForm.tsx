@@ -23,7 +23,7 @@ const ProdutoForm = ({
 
   return (
     <form onSubmit={handleSubmit(submitCallback)}>
-        <div className="mb-6 inline-block">
+        <div className="mb-6 mr-1.5 inline-block">
           <label
             htmlFor="nome"
             className="block mb-2 text-sm font-medium text-gray-900 dark:text-green-700"
@@ -50,10 +50,10 @@ const ProdutoForm = ({
             type="text"
             id="marca"
             maxLength={150}
-            className="bg-[#1a3a31] border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block pr-96 py-2.5 dark:bg-[#1a3a31]dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            className="bg-[#1a3a31] border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block pr-96 p-2.5 dark:bg-[#1a3a31]dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           />
         </div>
-        <div className="mb-6 mr-0.5">
+        <div className="mb-6 mr-1.5 inline-block">
           <label
             htmlFor="modelo"
             className="block mb-2 text-sm font-medium text-gray-900 dark:text-green-700"
@@ -68,7 +68,7 @@ const ProdutoForm = ({
             className="bg-[#1a3a31] border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block pr-96 py-2.5 dark:bg-[#1a3a31]dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           />
         </div>
-        <div className="mb-6">
+        <div className="mb-6 mr-1.5 inline-block">
           <label
             htmlFor="valor_Compra"
             className="block mb-2 text-sm font-medium text-gray-900 dark:text-green-700"
@@ -80,10 +80,10 @@ const ProdutoForm = ({
             id="valor_Compra"
             min={0}
             {...registerWithMask("valor_Compra", 'currency', { radixPoint: ',', autoUnmask: true, unmaskAsNumber: true, prefix: 'R$ ', placeholder: '0,00' })}
-            className="bg-[#1a3a31] border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block pr-96 py-2.5 dark:bg-[#1a3a31]dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            className="bg-[#1a3a31] border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block pr-10 py-2.5 dark:bg-[#1a3a31]dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           />
         </div>
-        <div className="mb-6 mr-0.5 inline-block">
+        <div className="mb-6 mr-1.5 inline-block">
           <label
             htmlFor="valor_Venda"
             className="block mb-2 text-sm font-medium text-gray-900 dark:text-green-700"
@@ -95,7 +95,7 @@ const ProdutoForm = ({
             id="valor_Venda"
             {...registerWithMask("valor_Venda", 'currency', { radixPoint: ',', autoUnmask: true, unmaskAsNumber: true, prefix: 'R$ ', placeholder: '0,00' })}
             min={0}
-            className="bg-[#1a3a31] border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block pr-96 py-2.5 dark:bg-[#1a3a31]dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            className="bg-[#1a3a31] border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block pr-9 py-2.5 dark:bg-[#1a3a31]dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           />
         </div>
          <div className="mb-6 inline-block">
@@ -108,30 +108,14 @@ const ProdutoForm = ({
           <select
             id="tipoMedida"
             {...register("tipoMedidaItem", { valueAsNumber: true })}
-            className="bg-[#1a3a31] border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block pr-96 py-2.5 dark:bg-[#1a3a31]dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            className="bg-[#1a3a31] border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block pr-10 p-2.5 dark:bg-[#1a3a31]dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           >
             <option value="0">Litro</option>
             <option value="1">Unidade</option>
             <option value="3">Kilo/Grama</option>
           </select>
         </div>
-      <div className="mb-6">
-       <div className="mb-6 inline-block">
-          <label
-            htmlFor="quantidade"
-            className="block mb-2 text-sm font-medium text-gray-900 dark:text-green-700"
-          >
-            Quantidade*
-          </label>
-          <input
-            type="number"
-            min={1}
-            id="quantidade"
-            {...register("qtd", { required: true, valueAsNumber: true })}
-            className="bg-[#1a3a31] border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block pr-96 py-2.5 dark:bg-[#1a3a31]dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-          />
-        </div>
-        <div className="mb-6 inline-block">
+        <div className="mb-6 mr-1.5 inline-block">
         <label
           htmlFor="garantia"
           className="block mb-2 text-sm font-medium text-gray-900 dark:text-green-700"
@@ -145,9 +129,23 @@ const ProdutoForm = ({
           {...register("garantia")}
           className="bg-[#1a3a31] border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block pr-96 py-2.5 dark:bg-[#1a3a31]dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
         />
-      </div>
-    </div>
-      <div className="mb-6 mr-1 inline-block">
+        </div>
+       <div className="mb-6 mr-1.5 inline-block">
+          <label
+            htmlFor="quantidade"
+            className="block mb-2 text-sm font-medium text-gray-900 dark:text-green-700"
+          >
+            Quantidade*
+          </label>
+          <input
+            type="number"
+            min={1}
+            id="quantidade"
+            {...register("qtd", { required: true, valueAsNumber: true })}
+            className="bg-[#1a3a31] border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block pr-60 p-2.5 dark:bg-[#1a3a31]dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          />
+        </div>
+      <div className="mb-6 inline-block">
           <label
             htmlFor="data_validade"
             className="block mb-2 text-sm font-medium text-gray-900 dark:text-green-700"
@@ -158,7 +156,7 @@ const ProdutoForm = ({
             type="date"
             id="data_validade"
             {...register("data_validade", { valueAsDate: true })}
-            className="bg-[#1a3a31] border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block  py-2.5 dark:bg-[#1a3a31]dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            className="bg-[#1a3a31] border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block pr-4 py-2.5 dark:bg-[#1a3a31]dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           />
         </div>
       
