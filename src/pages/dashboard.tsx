@@ -6,6 +6,7 @@ import CategoryChartPie from "../components/dashboard/categoryChartPie";
 import ProfitChartLine from "../components/dashboard/profitChartLine";
 import MonthProfitChartBar from "../components/dashboard/monthProfitChartBar";
 import SubCategoryChartPie from "../components/dashboard/subCategoryChartPie";
+import LastSalesProduct from "../components/dashboard/lastSalesProduct";
 
 const Dashboard = () => {
   return (
@@ -25,9 +26,12 @@ const Dashboard = () => {
         <CategoryChartPie />
         <SubCategoryChartPie />
       </div>
+      <div className="flex-wrap lg:flex-nowrap flex gap-2">        
+        <LastSalesProduct />
+        <MonthProfitChartBar />
+      </div>
       <div className="flex-nowrap">
         <ProfitChartLine />
-        <MonthProfitChartBar />
       </div>
     </>
   );
