@@ -26,8 +26,8 @@ const Dashboard = () => {
         <SubCategoryChartPie />
       </div>
       <div className="flex-nowrap">
-        <ProfitChartLine />
         <MonthProfitChartBar />
+        <ProfitChartLine />
       </div>
     </>
   );

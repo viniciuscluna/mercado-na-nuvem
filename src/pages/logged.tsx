@@ -62,7 +62,7 @@ const Logged = () => {
   return (
     <main className="bg-[url('/public/FUNDO.png')] bg-contain h-full flex flex-col sm:flex-row ">
       <Sidebar />
-      <section className="px-4 sm:ml-64 w-full flex flex-col overflow-auto  ">
+      <section className="px-4 sm:ml-64 w-full flex flex-col overflow-auto">
         <div className="flex flex-col grow">
           <Outlet />
         </div>

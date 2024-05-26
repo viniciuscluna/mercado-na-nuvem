@@ -84,7 +84,6 @@ const ProfitChartLine = () => {
             />
           </LineChart>
         </ResponsiveContainer>
-
       </div>
     </div>
   );
