@@ -31,7 +31,6 @@ const Dashboard = () => {
         <MonthProfitChartBar />
       </div>
       <div className="flex-nowrap">
-        <MonthProfitChartBar />
         <ProfitChartLine />
       </div>
     </>
