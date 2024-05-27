@@ -23,10 +23,11 @@ const ProdutoForm = ({
 
   return (
     <form onSubmit={handleSubmit(submitCallback)}>
-        <div className="mb-6 mr-1.5 inline-block">
+      <div className="grid gap-3 mb-6 md:grid-cols-3 w-full">
+        <div className="mr-3">
           <label
             htmlFor="nome"
-            className="block mb-2 text-sm font-medium text-gray-900 dark:text-green-700"
+            className="w-full block mb-2 text-sm font-medium text-gray-900 dark:text-green-700"
           >
             Nome*
           </label>
@@ -35,13 +36,13 @@ const ProdutoForm = ({
             type="text"
             id="nome"
             maxLength={150}
-            className="bg-[#1a3a31] border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block pr-96 py-2.5 dark:bg-[#1a3a31]dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            className="w-full bg-[#1a3a31] border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-[#1a3a31]dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           />
-        </div>
-        <div className="mb-6 inline-block">
+         </div>
+        <div className="mr-3">
           <label
             htmlFor="marca"
-            className="block mb-2 text-sm font-medium text-gray-900 dark:text-green-700"
+            className="w-full block mb-2 text-sm font-medium text-gray-900 dark:text-green-700"
           >
             Marca*
           </label>
@@ -50,13 +51,13 @@ const ProdutoForm = ({
             type="text"
             id="marca"
             maxLength={150}
-            className="bg-[#1a3a31] border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block pr-96 p-2.5 dark:bg-[#1a3a31]dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            className="w-full bg-[#1a3a31] border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-[#1a3a31]dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           />
         </div>
-        <div className="mb-6 mr-1.5 inline-block">
+        <div>
           <label
             htmlFor="modelo"
-            className="block mb-2 text-sm font-medium text-gray-900 dark:text-green-700"
+            className="w-full block mb-2 text-sm font-medium text-gray-900 dark:text-green-700"
           >
             Modelo*
           </label>
@@ -65,13 +66,15 @@ const ProdutoForm = ({
             id="modelo"
             {...register("modelo")}
             maxLength={200}
-            className="bg-[#1a3a31] border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block pr-96 py-2.5 dark:bg-[#1a3a31]dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            className="w-full bg-[#1a3a31] border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-[#1a3a31]dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           />
         </div>
-        <div className="mb-6 mr-1.5 inline-block">
+      </div>
+      <div className="grid gap-3 mb-6 md:grid-cols-3 w-full">
+        <div className="mr-3">
           <label
             htmlFor="valor_Compra"
-            className="block mb-2 text-sm font-medium text-gray-900 dark:text-green-700"
+            className="w-full block mb-2 text-sm font-medium text-gray-900 dark:text-green-700"
           >
             Valor Compra*
           </label>
@@ -80,13 +83,13 @@ const ProdutoForm = ({
             id="valor_Compra"
             min={0}
             {...registerWithMask("valor_Compra", 'currency', { radixPoint: ',', autoUnmask: true, unmaskAsNumber: true, prefix: 'R$ ', placeholder: '0,00' })}
-            className="bg-[#1a3a31] border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block pr-10 py-2.5 dark:bg-[#1a3a31]dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            className="w-full bg-[#1a3a31] border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-[#1a3a31]dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           />
         </div>
-        <div className="mb-6 mr-1.5 inline-block">
+        <div className="mr-3">
           <label
             htmlFor="valor_Venda"
-            className="block mb-2 text-sm font-medium text-gray-900 dark:text-green-700"
+            className="w-full block mb-2 text-sm font-medium text-gray-900 dark:text-green-700"
           >
             Valor Venda*
           </label>
@@ -95,30 +98,32 @@ const ProdutoForm = ({
             id="valor_Venda"
             {...registerWithMask("valor_Venda", 'currency', { radixPoint: ',', autoUnmask: true, unmaskAsNumber: true, prefix: 'R$ ', placeholder: '0,00' })}
             min={0}
-            className="bg-[#1a3a31] border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block pr-9 py-2.5 dark:bg-[#1a3a31]dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            className="w-full bg-[#1a3a31] border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-[#1a3a31]dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           />
         </div>
-         <div className="mb-6 inline-block">
+         <div className="">
           <label
             htmlFor="tipoMedida"
-            className="block mb-2 text-sm font-medium text-gray-900 dark:text-green-700"
+            className="w-full block mb-2 text-sm font-medium text-gray-900 dark:text-green-700"
           >
             Tipo Medida*
           </label>
           <select
             id="tipoMedida"
             {...register("tipoMedidaItem", { valueAsNumber: true })}
-            className="bg-[#1a3a31] border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block pr-10 p-2.5 dark:bg-[#1a3a31]dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            className="w-full bg-[#1a3a31] border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-[#1a3a31]dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           >
             <option value="0">Litro</option>
             <option value="1">Unidade</option>
             <option value="3">Kilo/Grama</option>
           </select>
         </div>
-        <div className="mb-6 mr-1.5 inline-block">
+      </div> 
+      <div className="grid gap-3 mb-6 md:grid-cols-3 w-full">
+        <div className="mr-3">
         <label
           htmlFor="garantia"
-          className="block mb-2 text-sm font-medium text-gray-900 dark:text-green-700"
+          className="w-full block mb-2 text-sm font-medium text-gray-900 dark:text-green-700"
         >
           Garantia
         </label>
@@ -127,13 +132,13 @@ const ProdutoForm = ({
           id="garantia"
           maxLength={200}
           {...register("garantia")}
-          className="bg-[#1a3a31] border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block pr-96 py-2.5 dark:bg-[#1a3a31]dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          className="w-full bg-[#1a3a31] border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-[#1a3a31]dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
         />
         </div>
-       <div className="mb-6 mr-1.5 inline-block">
+       <div className="mr-3">
           <label
             htmlFor="quantidade"
-            className="block mb-2 text-sm font-medium text-gray-900 dark:text-green-700"
+            className="w-full block mb-2 text-sm font-medium text-gray-900 dark:text-green-700"
           >
             Quantidade*
           </label>
@@ -142,13 +147,13 @@ const ProdutoForm = ({
             min={1}
             id="quantidade"
             {...register("qtd", { required: true, valueAsNumber: true })}
-            className="bg-[#1a3a31] border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block pr-60 p-2.5 dark:bg-[#1a3a31]dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            className="w-full bg-[#1a3a31] border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-[#1a3a31]dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           />
         </div>
-      <div className="mb-6 inline-block">
+       <div>
           <label
             htmlFor="data_validade"
-            className="block mb-2 text-sm font-medium text-gray-900 dark:text-green-700"
+            className="w-full block mb-2 text-sm font-medium text-gray-900 dark:text-green-700"
           >
             Data Validade
           </label>
@@ -156,10 +161,10 @@ const ProdutoForm = ({
             type="date"
             id="data_validade"
             {...register("data_validade", { valueAsDate: true })}
-            className="bg-[#1a3a31] border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block pr-4 py-2.5 dark:bg-[#1a3a31]dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            className="w-full bg-[#1a3a31] border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-[#1a3a31]dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           />
         </div>
-      
+      </div>
       <div className="gap-4">
         <button
           type="button"

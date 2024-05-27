@@ -21,10 +21,11 @@ const OfficeForm = ({
   const registerWithMask = useHookFormMask(register);
   return (
     <form onSubmit={handleSubmit(submitCallback)}>
-      <div className="mb-6 mr-1 inline-block">
+      <div className="grid gap-2 mb-6 md:grid-cols-2 w-full">
+        <div className="mr-3">
         <label
           htmlFor="nome"
-          className="block mb-2 text-sm font-medium text-gray-900 dark:text-green-700"
+          className="w-full block mb-2 text-sm font-medium text-gray-900 dark:text-green-700"
         >
           Nome*
         </label>
@@ -33,13 +34,13 @@ const OfficeForm = ({
           maxLength={250}
           type="text"
           id="nome"
-          className="bg-[#1a3a31] border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block pr-96 py-2.5 dark:bg-[#1a3a31] dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          className="w-full bg-[#1a3a31] border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-[#1a3a31] dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
         />
-      </div>
-      <div className="mb-6 inline-block">
+       </div>
+       <div>
         <label
           htmlFor="logradouro"
-          className="block mb-2 text-sm font-medium text-gray-900 dark:text-green-700"
+          className="w-full block mb-2 text-sm font-medium text-gray-900 dark:text-green-700"
         >
           Logradouro*
         </label>
@@ -47,13 +48,15 @@ const OfficeForm = ({
           type="text"
           id="logradouro"
           {...register("logradouro", { required: true })}
-          className="bg-[#1a3a31] border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block pr-96 py-2.5 dark:bg-[#1a3a31] dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          className="w-full bg-[#1a3a31] border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-[#1a3a31] dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
         />
+       </div>
       </div>
-      <div className="mb-6 mr-1 inline-block">
+      <div className="grid gap-3 mb-6 md:grid-cols-3 w-full">
+        <div className="mr-3">
         <label
           htmlFor="cep"
-          className="block mb-2 text-sm font-medium text-gray-900 dark:text-green-700"
+          className="w-full block mb-2 text-sm font-medium text-gray-900 dark:text-green-700"
         >
           CEP*
         </label>
@@ -61,13 +64,13 @@ const OfficeForm = ({
           type="text"
           id="cep"
           {...registerWithMask("cep", ["99999-999"], { required: true })}
-          className="bg-[#1a3a31] border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block pr-96 py-2.5 dark:bg-[#1a3a31] dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          className="w-full bg-[#1a3a31] border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-[#1a3a31] dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
         />
-      </div>
-      <div className="mb-6 mr-32 inline-block">
+       </div>
+       <div>
         <label
           htmlFor="numero"
-          className="block mb-2 text-sm font-medium text-gray-900 dark:text-green-700"
+          className="w-full block mb-2 text-sm font-medium text-gray-900 dark:text-green-700"
         >
           Número*
         </label>
@@ -75,22 +78,24 @@ const OfficeForm = ({
           type="text"
           id="numero"
           {...register("numero", { required: true })}
-          className="bg-[#1a3a31] border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block pr-24 p-2.5 dark:bg-[#1a3a31] dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          className="w-full bg-[#1a3a31] border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-[#1a3a31] dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
         />
-      </div>
-      <div className="mb-6 inline-block">
+       </div>
+       
+       <div className="text-center mt-2">
         <label
           htmlFor="matriz"
-          className="block mb-2 text-sm font-medium text-gray-900 dark:text-green-700"
+          className="text-center block mb-2 text-sm font-medium text-gray-900 dark:text-green-700"
         >
           Matriz?
         </label>
-        <div className="flex items-center">
+        <div className="text-center">
           <input
             {...register("matriz", { setValueAs: Boolean })}
             type="checkbox" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-[#1a3a31] dark:border-gray-600" />
 
         </div>
+       </div>
       </div>
       <div className="mb-6">
         <label
@@ -109,7 +114,7 @@ const OfficeForm = ({
       <div className="flex gap-4">
         <button
           type="button"
-          className="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:text-white dark:hover:bg-[#1a3a31]"
+          className="p-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:text-white dark:hover:bg-[#1a3a31]"
           onClick={() => backCallback()}
         >
           Voltar
