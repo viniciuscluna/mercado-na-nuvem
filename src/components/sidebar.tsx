@@ -57,7 +57,7 @@ const Sidebar = () => {
         )}
         aria-label="Sidebar"
       >
-        <div className="h-full px-3 py-4 overflow-y-auto bg-[#908782] dark:bg-[#908782]">
+        <div className="h-full px-3 py-4 overflow-y-auto bg-[#908782] dark:bg-[#011611]">
           <ul className="space-y-2 font-medium">
             <li>
               <h1 className="h-full px-3 py-4 text-gray-200">Bem-vindo, {userName}

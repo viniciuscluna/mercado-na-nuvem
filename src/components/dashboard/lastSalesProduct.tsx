@@ -8,7 +8,7 @@ const LastSalesProduct = () => {
             </h5>
             <br />
             <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                <thead className="text-xs text-white uppercase bg-[#1a3a31] dark:bg-[#00593e] dark:text-gray-400">
+                <thead className="text-xs text-white uppercase bg-[#1a3a31] dark:bg-[#03825C] dark:text-gray-400">
                     <tr>
                         <th scope="col" className="px-3 py-3">
                             Produto
