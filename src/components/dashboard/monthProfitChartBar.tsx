@@ -51,14 +51,14 @@ const MonthProfitChartBar = () => {
 
 
   return (
-    <div className="relative w-1/2 mr-6 overflow-auto shadow-md sm:rounded-lg h-full h-64">
+    <div className="p-2 w-full overflow-auto">
       <div className="w-full">
         <h5 className="text-center text-2xl font-bold tracking-tight text-gray-900 dark:text-stone-500">
           Faturamento Mensal
         </h5>
         <br />
         <div
-          className="p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-[#1a3a30e6] dark:bg-[#1a3a31] dark:border-gray-700 dark:hover:bg-[#1a3a30e6]"
+          className="p-6  bg-white border border-gray-200 rounded-lg shadow hover:bg-[#1a3a30e6] dark:bg-[#1a3a31] dark:border-gray-700 dark:hover:bg-[#1a3a30e6]"
           style={{ width: "100%", height: "40dvh" }}
         >
           <ResponsiveContainer>
